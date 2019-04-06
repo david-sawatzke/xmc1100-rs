@@ -4,6 +4,14 @@ version = "0.1.0"
 authors = ["David Sawatzke <david-sawatzke@users.noreply.github.com>"]
 edition = "2018"
 
+description = "Low-level register mappings for the XMC1100 series of ARM Cortex-M0 microcontrollers"
+documentation = "https://docs.rs/xmc1100"
+repository = "https://github.com/david-sawatzke/xmc1100-rs"
+license = "MIT/Apache-2.0"
+readme = "README.md"
+keywords = ["xmc", "svd2rust", "no_std", "embedded"]
+categories = ["embedded", "no-std"]
+
 [dependencies]
 bare-metal = "0.2.0"
 cortex-m = "0.6.0"
