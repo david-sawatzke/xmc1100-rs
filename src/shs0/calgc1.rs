@@ -1,272 +1,186 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CALGC1 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CALGC1"]
+pub type R = crate::R<u32, super::CALGC1>;
+#[doc = "Writer for register CALGC1"]
+pub type W = crate::W<u32, super::CALGC1>;
+#[doc = "Register CALGC1 `reset()`'s with value 0x2000_2000"]
+impl crate::ResetValue for super::CALGC1 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x2000_2000
     }
 }
-#[doc = r" Value of the field"]
-pub struct CALGNVALSR {
-    bits: u16,
-}
-impl CALGNVALSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CALGNVALAR {
-    bits: u16,
-}
-impl CALGNVALAR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CALGNVALSW<'a> {
+#[doc = "Reader of field `CALGNVALS`"]
+pub type CALGNVALS_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `CALGNVALS`"]
+pub struct CALGNVALS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CALGNVALSW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> CALGNVALS_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 16383;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x3fff) | ((value as u32) & 0x3fff);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `GNSWC`"]
-pub enum GNSWCW {
-    #[doc = "No write access to gain calibration parameter"]
+#[doc = "Gain Calibration Write Control, Standard\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum GNSWC_AW {
+    #[doc = "0: No write access to gain calibration parameter"]
     VALUE1,
-    #[doc = "CALGNVALS can be written"]
+    #[doc = "1: CALGNVALS can be written"]
     VALUE2,
 }
-impl GNSWCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            GNSWCW::VALUE1 => false,
-            GNSWCW::VALUE2 => true,
+impl From<GNSWC_AW> for bool {
+    #[inline(always)]
+    fn from(variant: GNSWC_AW) -> Self {
+        match variant {
+            GNSWC_AW::VALUE1 => false,
+            GNSWC_AW::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _GNSWCW<'a> {
+#[doc = "Write proxy for field `GNSWC`"]
+pub struct GNSWC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GNSWCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: GNSWCW) -> &'a mut W {
+impl<'a> GNSWC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: GNSWC_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No write access to gain calibration parameter"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(GNSWCW::VALUE1)
+        self.variant(GNSWC_AW::VALUE1)
     }
     #[doc = "CALGNVALS can be written"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(GNSWCW::VALUE2)
+        self.variant(GNSWC_AW::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
-#[doc = r" Proxy"]
-pub struct _CALGNVALAW<'a> {
+#[doc = "Reader of field `CALGNVALA`"]
+pub type CALGNVALA_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `CALGNVALA`"]
+pub struct CALGNVALA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CALGNVALAW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> CALGNVALA_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        const MASK: u16 = 16383;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x3fff << 16)) | (((value as u32) & 0x3fff) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `GNAWC`"]
-pub enum GNAWCW {
-    #[doc = "No write access to gain calibration parameter"]
+#[doc = "Gain Calibration Write Control, Alternate\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum GNAWC_AW {
+    #[doc = "0: No write access to gain calibration parameter"]
     VALUE1,
-    #[doc = "CALGNVALA can be written"]
+    #[doc = "1: CALGNVALA can be written"]
     VALUE2,
 }
-impl GNAWCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            GNAWCW::VALUE1 => false,
-            GNAWCW::VALUE2 => true,
+impl From<GNAWC_AW> for bool {
+    #[inline(always)]
+    fn from(variant: GNAWC_AW) -> Self {
+        match variant {
+            GNAWC_AW::VALUE1 => false,
+            GNAWC_AW::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _GNAWCW<'a> {
+#[doc = "Write proxy for field `GNAWC`"]
+pub struct GNAWC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GNAWCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: GNAWCW) -> &'a mut W {
+impl<'a> GNAWC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: GNAWC_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No write access to gain calibration parameter"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(GNAWCW::VALUE1)
+        self.variant(GNAWC_AW::VALUE1)
     }
     #[doc = "CALGNVALA can be written"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(GNAWCW::VALUE2)
+        self.variant(GNAWC_AW::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:13 - Gain Calibration Value, Standard Reference"]
-    #[inline]
-    pub fn calgnvals(&self) -> CALGNVALSR {
-        let bits = {
-            const MASK: u16 = 16383;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        CALGNVALSR { bits }
+    #[inline(always)]
+    pub fn calgnvals(&self) -> CALGNVALS_R {
+        CALGNVALS_R::new((self.bits & 0x3fff) as u16)
     }
     #[doc = "Bits 16:29 - Gain Calibration Value, Alternate Reference"]
-    #[inline]
-    pub fn calgnvala(&self) -> CALGNVALAR {
-        let bits = {
-            const MASK: u16 = 16383;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        CALGNVALAR { bits }
+    #[inline(always)]
+    pub fn calgnvala(&self) -> CALGNVALA_R {
+        CALGNVALA_R::new(((self.bits >> 16) & 0x3fff) as u16)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 536879104 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:13 - Gain Calibration Value, Standard Reference"]
-    #[inline]
-    pub fn calgnvals(&mut self) -> _CALGNVALSW {
-        _CALGNVALSW { w: self }
+    #[inline(always)]
+    pub fn calgnvals(&mut self) -> CALGNVALS_W {
+        CALGNVALS_W { w: self }
     }
     #[doc = "Bit 15 - Gain Calibration Write Control, Standard"]
-    #[inline]
-    pub fn gnswc(&mut self) -> _GNSWCW {
-        _GNSWCW { w: self }
+    #[inline(always)]
+    pub fn gnswc(&mut self) -> GNSWC_W {
+        GNSWC_W { w: self }
     }
     #[doc = "Bits 16:29 - Gain Calibration Value, Alternate Reference"]
-    #[inline]
-    pub fn calgnvala(&mut self) -> _CALGNVALAW {
-        _CALGNVALAW { w: self }
+    #[inline(always)]
+    pub fn calgnvala(&mut self) -> CALGNVALA_W {
+        CALGNVALA_W { w: self }
     }
     #[doc = "Bit 31 - Gain Calibration Write Control, Alternate"]
-    #[inline]
-    pub fn gnawc(&mut self) -> _GNAWCW {
-        _GNAWCW { w: self }
+    #[inline(always)]
+    pub fn gnawc(&mut self) -> GNAWC_W {
+        GNAWC_W { w: self }
     }
 }

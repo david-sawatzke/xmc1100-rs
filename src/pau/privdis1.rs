@@ -1,1016 +1,720 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PRIVDIS1 {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PRIVDIS1"]
+pub type R = crate::R<u32, super::PRIVDIS1>;
+#[doc = "Writer for register PRIVDIS1"]
+pub type W = crate::W<u32, super::PRIVDIS1>;
+#[doc = "Register PRIVDIS1 `reset()`'s with value 0"]
+impl crate::ResetValue for super::PRIVDIS1 {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `PDIS0`"]
+#[doc = "USIC0 Channel 0 Privilege Disable Flag\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDIS0R {
-    #[doc = "USIC0 Channel 0 is accessible."]
+pub enum PDIS0_A {
+    #[doc = "0: USIC0 Channel 0 is accessible."]
     VALUE1,
-    #[doc = "USIC0 Channel 0 is not accessible."]
+    #[doc = "1: USIC0 Channel 0 is not accessible."]
     VALUE2,
 }
-impl PDIS0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDIS0R::VALUE1 => false,
-            PDIS0R::VALUE2 => true,
+impl From<PDIS0_A> for bool {
+    #[inline(always)]
+    fn from(variant: PDIS0_A) -> Self {
+        match variant {
+            PDIS0_A::VALUE1 => false,
+            PDIS0_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDIS0R {
-        match value {
-            false => PDIS0R::VALUE1,
-            true => PDIS0R::VALUE2,
+}
+#[doc = "Reader of field `PDIS0`"]
+pub type PDIS0_R = crate::R<bool, PDIS0_A>;
+impl PDIS0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PDIS0_A {
+        match self.bits {
+            false => PDIS0_A::VALUE1,
+            true => PDIS0_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == PDIS0R::VALUE1
+        *self == PDIS0_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == PDIS0R::VALUE2
+        *self == PDIS0_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `PDIS1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDIS1R {
-    #[doc = "USIC0 Channel 1 is accessible."]
-    VALUE1,
-    #[doc = "USIC0 Channel 1 is not accessible."]
-    VALUE2,
-}
-impl PDIS1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDIS1R::VALUE1 => false,
-            PDIS1R::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDIS1R {
-        match value {
-            false => PDIS1R::VALUE1,
-            true => PDIS1R::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PDIS1R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PDIS1R::VALUE2
-    }
-}
-#[doc = "Possible values of the field `PDIS5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDIS5R {
-    #[doc = "VADC0 Basic SFRs are accessible."]
-    VALUE1,
-    #[doc = "VADC0 Basic SFRs are not accessible."]
-    VALUE2,
-}
-impl PDIS5R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDIS5R::VALUE1 => false,
-            PDIS5R::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDIS5R {
-        match value {
-            false => PDIS5R::VALUE1,
-            true => PDIS5R::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PDIS5R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PDIS5R::VALUE2
-    }
-}
-#[doc = "Possible values of the field `PDIS8`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDIS8R {
-    #[doc = "SHS is accessible."]
-    VALUE1,
-    #[doc = "SHS is not accessible."]
-    VALUE2,
-}
-impl PDIS8R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDIS8R::VALUE1 => false,
-            PDIS8R::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDIS8R {
-        match value {
-            false => PDIS8R::VALUE1,
-            true => PDIS8R::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PDIS8R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PDIS8R::VALUE2
-    }
-}
-#[doc = "Possible values of the field `PDIS9`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDIS9R {
-    #[doc = "CC40 and CCU40 Kernel SFRs are accessible."]
-    VALUE1,
-    #[doc = "CC40 and CCU40 Kernel SFRs are not accessible."]
-    VALUE2,
-}
-impl PDIS9R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDIS9R::VALUE1 => false,
-            PDIS9R::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDIS9R {
-        match value {
-            false => PDIS9R::VALUE1,
-            true => PDIS9R::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PDIS9R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PDIS9R::VALUE2
-    }
-}
-#[doc = "Possible values of the field `PDIS10`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDIS10R {
-    #[doc = "CC41 is accessible."]
-    VALUE1,
-    #[doc = "CC41 is not accessible."]
-    VALUE2,
-}
-impl PDIS10R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDIS10R::VALUE1 => false,
-            PDIS10R::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDIS10R {
-        match value {
-            false => PDIS10R::VALUE1,
-            true => PDIS10R::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PDIS10R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PDIS10R::VALUE2
-    }
-}
-#[doc = "Possible values of the field `PDIS11`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDIS11R {
-    #[doc = "CC42 is accessible."]
-    VALUE1,
-    #[doc = "CC42 is not accessible."]
-    VALUE2,
-}
-impl PDIS11R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDIS11R::VALUE1 => false,
-            PDIS11R::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDIS11R {
-        match value {
-            false => PDIS11R::VALUE1,
-            true => PDIS11R::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PDIS11R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PDIS11R::VALUE2
-    }
-}
-#[doc = "Possible values of the field `PDIS12`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PDIS12R {
-    #[doc = "CC43 is accessible."]
-    VALUE1,
-    #[doc = "CC43 is not accessible."]
-    VALUE2,
-}
-impl PDIS12R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PDIS12R::VALUE1 => false,
-            PDIS12R::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PDIS12R {
-        match value {
-            false => PDIS12R::VALUE1,
-            true => PDIS12R::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PDIS12R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PDIS12R::VALUE2
-    }
-}
-#[doc = "Values that can be written to the field `PDIS0`"]
-pub enum PDIS0W {
-    #[doc = "USIC0 Channel 0 is accessible."]
-    VALUE1,
-    #[doc = "USIC0 Channel 0 is not accessible."]
-    VALUE2,
-}
-impl PDIS0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDIS0W::VALUE1 => false,
-            PDIS0W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PDIS0W<'a> {
+#[doc = "Write proxy for field `PDIS0`"]
+pub struct PDIS0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PDIS0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDIS0W) -> &'a mut W {
+impl<'a> PDIS0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PDIS0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "USIC0 Channel 0 is accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PDIS0W::VALUE1)
+        self.variant(PDIS0_A::VALUE1)
     }
     #[doc = "USIC0 Channel 0 is not accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PDIS0W::VALUE2)
+        self.variant(PDIS0_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PDIS1`"]
-pub enum PDIS1W {
+#[doc = "USIC0 Channel 1 Privilege Disable Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PDIS1_A {
+    #[doc = "0: USIC0 Channel 1 is accessible."]
+    VALUE1,
+    #[doc = "1: USIC0 Channel 1 is not accessible."]
+    VALUE2,
+}
+impl From<PDIS1_A> for bool {
+    #[inline(always)]
+    fn from(variant: PDIS1_A) -> Self {
+        match variant {
+            PDIS1_A::VALUE1 => false,
+            PDIS1_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PDIS1`"]
+pub type PDIS1_R = crate::R<bool, PDIS1_A>;
+impl PDIS1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PDIS1_A {
+        match self.bits {
+            false => PDIS1_A::VALUE1,
+            true => PDIS1_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PDIS1_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PDIS1_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `PDIS1`"]
+pub struct PDIS1_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PDIS1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PDIS1_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "USIC0 Channel 1 is accessible."]
-    VALUE1,
-    #[doc = "USIC0 Channel 1 is not accessible."]
-    VALUE2,
-}
-impl PDIS1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDIS1W::VALUE1 => false,
-            PDIS1W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PDIS1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PDIS1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDIS1W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "USIC0 Channel 1 is accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PDIS1W::VALUE1)
+        self.variant(PDIS1_A::VALUE1)
     }
     #[doc = "USIC0 Channel 1 is not accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PDIS1W::VALUE2)
+        self.variant(PDIS1_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PDIS5`"]
-pub enum PDIS5W {
-    #[doc = "VADC0 Basic SFRs are accessible."]
+#[doc = "VADC0 Basic SFRs Privilege Disable Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PDIS5_A {
+    #[doc = "0: VADC0 Basic SFRs are accessible."]
     VALUE1,
-    #[doc = "VADC0 Basic SFRs are not accessible."]
+    #[doc = "1: VADC0 Basic SFRs are not accessible."]
     VALUE2,
 }
-impl PDIS5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDIS5W::VALUE1 => false,
-            PDIS5W::VALUE2 => true,
+impl From<PDIS5_A> for bool {
+    #[inline(always)]
+    fn from(variant: PDIS5_A) -> Self {
+        match variant {
+            PDIS5_A::VALUE1 => false,
+            PDIS5_A::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PDIS5W<'a> {
+#[doc = "Reader of field `PDIS5`"]
+pub type PDIS5_R = crate::R<bool, PDIS5_A>;
+impl PDIS5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PDIS5_A {
+        match self.bits {
+            false => PDIS5_A::VALUE1,
+            true => PDIS5_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PDIS5_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PDIS5_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `PDIS5`"]
+pub struct PDIS5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PDIS5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDIS5W) -> &'a mut W {
+impl<'a> PDIS5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PDIS5_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "VADC0 Basic SFRs are accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PDIS5W::VALUE1)
+        self.variant(PDIS5_A::VALUE1)
     }
     #[doc = "VADC0 Basic SFRs are not accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PDIS5W::VALUE2)
+        self.variant(PDIS5_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 5;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PDIS8`"]
-pub enum PDIS8W {
+#[doc = "SHS0 Privilege Disable Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PDIS8_A {
+    #[doc = "0: SHS is accessible."]
+    VALUE1,
+    #[doc = "1: SHS is not accessible."]
+    VALUE2,
+}
+impl From<PDIS8_A> for bool {
+    #[inline(always)]
+    fn from(variant: PDIS8_A) -> Self {
+        match variant {
+            PDIS8_A::VALUE1 => false,
+            PDIS8_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PDIS8`"]
+pub type PDIS8_R = crate::R<bool, PDIS8_A>;
+impl PDIS8_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PDIS8_A {
+        match self.bits {
+            false => PDIS8_A::VALUE1,
+            true => PDIS8_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PDIS8_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PDIS8_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `PDIS8`"]
+pub struct PDIS8_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PDIS8_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PDIS8_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "SHS is accessible."]
-    VALUE1,
-    #[doc = "SHS is not accessible."]
-    VALUE2,
-}
-impl PDIS8W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDIS8W::VALUE1 => false,
-            PDIS8W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PDIS8W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PDIS8W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDIS8W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "SHS is accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PDIS8W::VALUE1)
+        self.variant(PDIS8_A::VALUE1)
     }
     #[doc = "SHS is not accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PDIS8W::VALUE2)
+        self.variant(PDIS8_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PDIS9`"]
-pub enum PDIS9W {
-    #[doc = "CC40 and CCU40 Kernel SFRs are accessible."]
+#[doc = "CC40 and CCU40 Kernel SFRs Privilege Disable Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PDIS9_A {
+    #[doc = "0: CC40 and CCU40 Kernel SFRs are accessible."]
     VALUE1,
-    #[doc = "CC40 and CCU40 Kernel SFRs are not accessible."]
+    #[doc = "1: CC40 and CCU40 Kernel SFRs are not accessible."]
     VALUE2,
 }
-impl PDIS9W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDIS9W::VALUE1 => false,
-            PDIS9W::VALUE2 => true,
+impl From<PDIS9_A> for bool {
+    #[inline(always)]
+    fn from(variant: PDIS9_A) -> Self {
+        match variant {
+            PDIS9_A::VALUE1 => false,
+            PDIS9_A::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PDIS9W<'a> {
+#[doc = "Reader of field `PDIS9`"]
+pub type PDIS9_R = crate::R<bool, PDIS9_A>;
+impl PDIS9_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PDIS9_A {
+        match self.bits {
+            false => PDIS9_A::VALUE1,
+            true => PDIS9_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PDIS9_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PDIS9_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `PDIS9`"]
+pub struct PDIS9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PDIS9W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDIS9W) -> &'a mut W {
+impl<'a> PDIS9_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PDIS9_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "CC40 and CCU40 Kernel SFRs are accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PDIS9W::VALUE1)
+        self.variant(PDIS9_A::VALUE1)
     }
     #[doc = "CC40 and CCU40 Kernel SFRs are not accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PDIS9W::VALUE2)
+        self.variant(PDIS9_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 9;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PDIS10`"]
-pub enum PDIS10W {
+#[doc = "CC41 Privilege Disable Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PDIS10_A {
+    #[doc = "0: CC41 is accessible."]
+    VALUE1,
+    #[doc = "1: CC41 is not accessible."]
+    VALUE2,
+}
+impl From<PDIS10_A> for bool {
+    #[inline(always)]
+    fn from(variant: PDIS10_A) -> Self {
+        match variant {
+            PDIS10_A::VALUE1 => false,
+            PDIS10_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PDIS10`"]
+pub type PDIS10_R = crate::R<bool, PDIS10_A>;
+impl PDIS10_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PDIS10_A {
+        match self.bits {
+            false => PDIS10_A::VALUE1,
+            true => PDIS10_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PDIS10_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PDIS10_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `PDIS10`"]
+pub struct PDIS10_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PDIS10_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PDIS10_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "CC41 is accessible."]
-    VALUE1,
-    #[doc = "CC41 is not accessible."]
-    VALUE2,
-}
-impl PDIS10W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDIS10W::VALUE1 => false,
-            PDIS10W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PDIS10W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PDIS10W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDIS10W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "CC41 is accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PDIS10W::VALUE1)
+        self.variant(PDIS10_A::VALUE1)
     }
     #[doc = "CC41 is not accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PDIS10W::VALUE2)
+        self.variant(PDIS10_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PDIS11`"]
-pub enum PDIS11W {
-    #[doc = "CC42 is accessible."]
+#[doc = "CC42 Privilege Disable Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PDIS11_A {
+    #[doc = "0: CC42 is accessible."]
     VALUE1,
-    #[doc = "CC42 is not accessible."]
+    #[doc = "1: CC42 is not accessible."]
     VALUE2,
 }
-impl PDIS11W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDIS11W::VALUE1 => false,
-            PDIS11W::VALUE2 => true,
+impl From<PDIS11_A> for bool {
+    #[inline(always)]
+    fn from(variant: PDIS11_A) -> Self {
+        match variant {
+            PDIS11_A::VALUE1 => false,
+            PDIS11_A::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PDIS11W<'a> {
+#[doc = "Reader of field `PDIS11`"]
+pub type PDIS11_R = crate::R<bool, PDIS11_A>;
+impl PDIS11_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PDIS11_A {
+        match self.bits {
+            false => PDIS11_A::VALUE1,
+            true => PDIS11_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PDIS11_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PDIS11_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `PDIS11`"]
+pub struct PDIS11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PDIS11W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDIS11W) -> &'a mut W {
+impl<'a> PDIS11_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PDIS11_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "CC42 is accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PDIS11W::VALUE1)
+        self.variant(PDIS11_A::VALUE1)
     }
     #[doc = "CC42 is not accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PDIS11W::VALUE2)
+        self.variant(PDIS11_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PDIS12`"]
-pub enum PDIS12W {
-    #[doc = "CC43 is accessible."]
+#[doc = "CC43 Privilege Disable Flag\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PDIS12_A {
+    #[doc = "0: CC43 is accessible."]
     VALUE1,
-    #[doc = "CC43 is not accessible."]
+    #[doc = "1: CC43 is not accessible."]
     VALUE2,
 }
-impl PDIS12W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PDIS12W::VALUE1 => false,
-            PDIS12W::VALUE2 => true,
+impl From<PDIS12_A> for bool {
+    #[inline(always)]
+    fn from(variant: PDIS12_A) -> Self {
+        match variant {
+            PDIS12_A::VALUE1 => false,
+            PDIS12_A::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PDIS12W<'a> {
+#[doc = "Reader of field `PDIS12`"]
+pub type PDIS12_R = crate::R<bool, PDIS12_A>;
+impl PDIS12_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PDIS12_A {
+        match self.bits {
+            false => PDIS12_A::VALUE1,
+            true => PDIS12_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PDIS12_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PDIS12_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `PDIS12`"]
+pub struct PDIS12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PDIS12W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PDIS12W) -> &'a mut W {
+impl<'a> PDIS12_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PDIS12_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "CC43 is accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PDIS12W::VALUE1)
+        self.variant(PDIS12_A::VALUE1)
     }
     #[doc = "CC43 is not accessible."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PDIS12W::VALUE2)
+        self.variant(PDIS12_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - USIC0 Channel 0 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis0(&self) -> PDIS0R {
-        PDIS0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pdis0(&self) -> PDIS0_R {
+        PDIS0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - USIC0 Channel 1 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis1(&self) -> PDIS1R {
-        PDIS1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pdis1(&self) -> PDIS1_R {
+        PDIS1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 5 - VADC0 Basic SFRs Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis5(&self) -> PDIS5R {
-        PDIS5R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pdis5(&self) -> PDIS5_R {
+        PDIS5_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 8 - SHS0 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis8(&self) -> PDIS8R {
-        PDIS8R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pdis8(&self) -> PDIS8_R {
+        PDIS8_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - CC40 and CCU40 Kernel SFRs Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis9(&self) -> PDIS9R {
-        PDIS9R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pdis9(&self) -> PDIS9_R {
+        PDIS9_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - CC41 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis10(&self) -> PDIS10R {
-        PDIS10R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pdis10(&self) -> PDIS10_R {
+        PDIS10_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - CC42 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis11(&self) -> PDIS11R {
-        PDIS11R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pdis11(&self) -> PDIS11_R {
+        PDIS11_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - CC43 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis12(&self) -> PDIS12R {
-        PDIS12R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pdis12(&self) -> PDIS12_R {
+        PDIS12_R::new(((self.bits >> 12) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - USIC0 Channel 0 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis0(&mut self) -> _PDIS0W {
-        _PDIS0W { w: self }
+    #[inline(always)]
+    pub fn pdis0(&mut self) -> PDIS0_W {
+        PDIS0_W { w: self }
     }
     #[doc = "Bit 1 - USIC0 Channel 1 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis1(&mut self) -> _PDIS1W {
-        _PDIS1W { w: self }
+    #[inline(always)]
+    pub fn pdis1(&mut self) -> PDIS1_W {
+        PDIS1_W { w: self }
     }
     #[doc = "Bit 5 - VADC0 Basic SFRs Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis5(&mut self) -> _PDIS5W {
-        _PDIS5W { w: self }
+    #[inline(always)]
+    pub fn pdis5(&mut self) -> PDIS5_W {
+        PDIS5_W { w: self }
     }
     #[doc = "Bit 8 - SHS0 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis8(&mut self) -> _PDIS8W {
-        _PDIS8W { w: self }
+    #[inline(always)]
+    pub fn pdis8(&mut self) -> PDIS8_W {
+        PDIS8_W { w: self }
     }
     #[doc = "Bit 9 - CC40 and CCU40 Kernel SFRs Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis9(&mut self) -> _PDIS9W {
-        _PDIS9W { w: self }
+    #[inline(always)]
+    pub fn pdis9(&mut self) -> PDIS9_W {
+        PDIS9_W { w: self }
     }
     #[doc = "Bit 10 - CC41 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis10(&mut self) -> _PDIS10W {
-        _PDIS10W { w: self }
+    #[inline(always)]
+    pub fn pdis10(&mut self) -> PDIS10_W {
+        PDIS10_W { w: self }
     }
     #[doc = "Bit 11 - CC42 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis11(&mut self) -> _PDIS11W {
-        _PDIS11W { w: self }
+    #[inline(always)]
+    pub fn pdis11(&mut self) -> PDIS11_W {
+        PDIS11_W { w: self }
     }
     #[doc = "Bit 12 - CC43 Privilege Disable Flag"]
-    #[inline]
-    pub fn pdis12(&mut self) -> _PDIS12W {
-        _PDIS12W { w: self }
+    #[inline(always)]
+    pub fn pdis12(&mut self) -> PDIS12_W {
+        PDIS12_W { w: self }
     }
 }

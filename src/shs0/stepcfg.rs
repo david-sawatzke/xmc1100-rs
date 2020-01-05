@@ -1,1344 +1,912 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::STEPCFG {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register STEPCFG"]
+pub type R = crate::R<u32, super::STEPCFG>;
+#[doc = "Writer for register STEPCFG"]
+pub type W = crate::W<u32, super::STEPCFG>;
+#[doc = "Register STEPCFG `reset()`'s with value 0x98"]
+impl crate::ResetValue for super::STEPCFG {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x98
     }
 }
-#[doc = r" Value of the field"]
-pub struct KSEL0R {
-    bits: u8,
+#[doc = "Reader of field `KSEL0`"]
+pub type KSEL0_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `KSEL0`"]
+pub struct KSEL0_W<'a> {
+    w: &'a mut W,
 }
-impl KSEL0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> KSEL0_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x07) | ((value as u32) & 0x07);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct KSEL1R {
-    bits: u8,
+#[doc = "Reader of field `KSEL1`"]
+pub type KSEL1_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `KSEL1`"]
+pub struct KSEL1_W<'a> {
+    w: &'a mut W,
 }
-impl KSEL1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> KSEL1_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 4)) | (((value as u32) & 0x07) << 4);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct KSEL2R {
-    bits: u8,
+#[doc = "Reader of field `KSEL2`"]
+pub type KSEL2_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `KSEL2`"]
+pub struct KSEL2_W<'a> {
+    w: &'a mut W,
 }
-impl KSEL2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> KSEL2_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 8)) | (((value as u32) & 0x07) << 8);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct KSEL3R {
-    bits: u8,
+#[doc = "Reader of field `KSEL3`"]
+pub type KSEL3_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `KSEL3`"]
+pub struct KSEL3_W<'a> {
+    w: &'a mut W,
 }
-impl KSEL3R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> KSEL3_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 12)) | (((value as u32) & 0x07) << 12);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct KSEL4R {
-    bits: u8,
+#[doc = "Reader of field `KSEL4`"]
+pub type KSEL4_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `KSEL4`"]
+pub struct KSEL4_W<'a> {
+    w: &'a mut W,
 }
-impl KSEL4R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> KSEL4_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 16)) | (((value as u32) & 0x07) << 16);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct KSEL5R {
-    bits: u8,
+#[doc = "Reader of field `KSEL5`"]
+pub type KSEL5_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `KSEL5`"]
+pub struct KSEL5_W<'a> {
+    w: &'a mut W,
 }
-impl KSEL5R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> KSEL5_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 20)) | (((value as u32) & 0x07) << 20);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct KSEL6R {
-    bits: u8,
+#[doc = "Reader of field `KSEL6`"]
+pub type KSEL6_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `KSEL6`"]
+pub struct KSEL6_W<'a> {
+    w: &'a mut W,
 }
-impl KSEL6R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> KSEL6_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 24)) | (((value as u32) & 0x07) << 24);
+        self.w
     }
 }
-#[doc = r" Value of the field"]
-pub struct KSEL7R {
-    bits: u8,
+#[doc = "Reader of field `KSEL7`"]
+pub type KSEL7_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `KSEL7`"]
+pub struct KSEL7_W<'a> {
+    w: &'a mut W,
 }
-impl KSEL7R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> KSEL7_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x07 << 28)) | (((value as u32) & 0x07) << 28);
+        self.w
     }
 }
-#[doc = "Possible values of the field `SEN0`"]
+#[doc = "Step x Enable\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SEN0R {
-    #[doc = "Off: This step is not part of the stepper sequence"]
+pub enum SEN0_A {
+    #[doc = "0: Off: This step is not part of the stepper sequence"]
     VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
+    #[doc = "1: Active: This step is executed during the sequence"]
     VALUE2,
 }
-impl SEN0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SEN0R::VALUE1 => false,
-            SEN0R::VALUE2 => true,
+impl From<SEN0_A> for bool {
+    #[inline(always)]
+    fn from(variant: SEN0_A) -> Self {
+        match variant {
+            SEN0_A::VALUE1 => false,
+            SEN0_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SEN0R {
-        match value {
-            false => SEN0R::VALUE1,
-            true => SEN0R::VALUE2,
+}
+#[doc = "Reader of field `SEN0`"]
+pub type SEN0_R = crate::R<bool, SEN0_A>;
+impl SEN0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SEN0_A {
+        match self.bits {
+            false => SEN0_A::VALUE1,
+            true => SEN0_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SEN0R::VALUE1
+        *self == SEN0_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SEN0R::VALUE2
+        *self == SEN0_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `SEN1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SEN1R {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
+#[doc = "Write proxy for field `SEN0`"]
+pub struct SEN0_W<'a> {
+    w: &'a mut W,
 }
-impl SEN1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SEN1R::VALUE1 => false,
-            SEN1R::VALUE2 => true,
+impl<'a> SEN0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SEN0_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SEN1R {
-        match value {
-            false => SEN1R::VALUE1,
-            true => SEN1R::VALUE2,
+    #[doc = "Off: This step is not part of the stepper sequence"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(SEN0_A::VALUE1)
+    }
+    #[doc = "Active: This step is executed during the sequence"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(SEN0_A::VALUE2)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w
+    }
+}
+#[doc = "Step x Enable\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SEN1_A {
+    #[doc = "0: Off: This step is not part of the stepper sequence"]
+    VALUE1,
+    #[doc = "1: Active: This step is executed during the sequence"]
+    VALUE2,
+}
+impl From<SEN1_A> for bool {
+    #[inline(always)]
+    fn from(variant: SEN1_A) -> Self {
+        match variant {
+            SEN1_A::VALUE1 => false,
+            SEN1_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SEN1`"]
+pub type SEN1_R = crate::R<bool, SEN1_A>;
+impl SEN1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SEN1_A {
+        match self.bits {
+            false => SEN1_A::VALUE1,
+            true => SEN1_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SEN1R::VALUE1
+        *self == SEN1_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SEN1R::VALUE2
+        *self == SEN1_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `SEN2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SEN2R {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
+#[doc = "Write proxy for field `SEN1`"]
+pub struct SEN1_W<'a> {
+    w: &'a mut W,
 }
-impl SEN2R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SEN2R::VALUE1 => false,
-            SEN2R::VALUE2 => true,
+impl<'a> SEN1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SEN1_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SEN2R {
-        match value {
-            false => SEN2R::VALUE1,
-            true => SEN2R::VALUE2,
+    #[doc = "Off: This step is not part of the stepper sequence"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(SEN1_A::VALUE1)
+    }
+    #[doc = "Active: This step is executed during the sequence"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(SEN1_A::VALUE2)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w
+    }
+}
+#[doc = "Step x Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SEN2_A {
+    #[doc = "0: Off: This step is not part of the stepper sequence"]
+    VALUE1,
+    #[doc = "1: Active: This step is executed during the sequence"]
+    VALUE2,
+}
+impl From<SEN2_A> for bool {
+    #[inline(always)]
+    fn from(variant: SEN2_A) -> Self {
+        match variant {
+            SEN2_A::VALUE1 => false,
+            SEN2_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SEN2`"]
+pub type SEN2_R = crate::R<bool, SEN2_A>;
+impl SEN2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SEN2_A {
+        match self.bits {
+            false => SEN2_A::VALUE1,
+            true => SEN2_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SEN2R::VALUE1
+        *self == SEN2_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SEN2R::VALUE2
+        *self == SEN2_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `SEN3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SEN3R {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
+#[doc = "Write proxy for field `SEN2`"]
+pub struct SEN2_W<'a> {
+    w: &'a mut W,
 }
-impl SEN3R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SEN3R::VALUE1 => false,
-            SEN3R::VALUE2 => true,
+impl<'a> SEN2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SEN2_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SEN3R {
-        match value {
-            false => SEN3R::VALUE1,
-            true => SEN3R::VALUE2,
+    #[doc = "Off: This step is not part of the stepper sequence"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(SEN2_A::VALUE1)
+    }
+    #[doc = "Active: This step is executed during the sequence"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(SEN2_A::VALUE2)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w
+    }
+}
+#[doc = "Step x Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SEN3_A {
+    #[doc = "0: Off: This step is not part of the stepper sequence"]
+    VALUE1,
+    #[doc = "1: Active: This step is executed during the sequence"]
+    VALUE2,
+}
+impl From<SEN3_A> for bool {
+    #[inline(always)]
+    fn from(variant: SEN3_A) -> Self {
+        match variant {
+            SEN3_A::VALUE1 => false,
+            SEN3_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SEN3`"]
+pub type SEN3_R = crate::R<bool, SEN3_A>;
+impl SEN3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SEN3_A {
+        match self.bits {
+            false => SEN3_A::VALUE1,
+            true => SEN3_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SEN3R::VALUE1
+        *self == SEN3_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SEN3R::VALUE2
+        *self == SEN3_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `SEN4`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SEN4R {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
+#[doc = "Write proxy for field `SEN3`"]
+pub struct SEN3_W<'a> {
+    w: &'a mut W,
 }
-impl SEN4R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SEN4R::VALUE1 => false,
-            SEN4R::VALUE2 => true,
+impl<'a> SEN3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SEN3_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SEN4R {
-        match value {
-            false => SEN4R::VALUE1,
-            true => SEN4R::VALUE2,
+    #[doc = "Off: This step is not part of the stepper sequence"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(SEN3_A::VALUE1)
+    }
+    #[doc = "Active: This step is executed during the sequence"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(SEN3_A::VALUE2)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w
+    }
+}
+#[doc = "Step x Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SEN4_A {
+    #[doc = "0: Off: This step is not part of the stepper sequence"]
+    VALUE1,
+    #[doc = "1: Active: This step is executed during the sequence"]
+    VALUE2,
+}
+impl From<SEN4_A> for bool {
+    #[inline(always)]
+    fn from(variant: SEN4_A) -> Self {
+        match variant {
+            SEN4_A::VALUE1 => false,
+            SEN4_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SEN4`"]
+pub type SEN4_R = crate::R<bool, SEN4_A>;
+impl SEN4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SEN4_A {
+        match self.bits {
+            false => SEN4_A::VALUE1,
+            true => SEN4_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SEN4R::VALUE1
+        *self == SEN4_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SEN4R::VALUE2
+        *self == SEN4_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `SEN5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SEN5R {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
+#[doc = "Write proxy for field `SEN4`"]
+pub struct SEN4_W<'a> {
+    w: &'a mut W,
 }
-impl SEN5R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SEN5R::VALUE1 => false,
-            SEN5R::VALUE2 => true,
+impl<'a> SEN4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SEN4_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SEN5R {
-        match value {
-            false => SEN5R::VALUE1,
-            true => SEN5R::VALUE2,
+    #[doc = "Off: This step is not part of the stepper sequence"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(SEN4_A::VALUE1)
+    }
+    #[doc = "Active: This step is executed during the sequence"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(SEN4_A::VALUE2)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w
+    }
+}
+#[doc = "Step x Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SEN5_A {
+    #[doc = "0: Off: This step is not part of the stepper sequence"]
+    VALUE1,
+    #[doc = "1: Active: This step is executed during the sequence"]
+    VALUE2,
+}
+impl From<SEN5_A> for bool {
+    #[inline(always)]
+    fn from(variant: SEN5_A) -> Self {
+        match variant {
+            SEN5_A::VALUE1 => false,
+            SEN5_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SEN5`"]
+pub type SEN5_R = crate::R<bool, SEN5_A>;
+impl SEN5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SEN5_A {
+        match self.bits {
+            false => SEN5_A::VALUE1,
+            true => SEN5_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SEN5R::VALUE1
+        *self == SEN5_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SEN5R::VALUE2
+        *self == SEN5_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `SEN6`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SEN6R {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
+#[doc = "Write proxy for field `SEN5`"]
+pub struct SEN5_W<'a> {
+    w: &'a mut W,
 }
-impl SEN6R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SEN6R::VALUE1 => false,
-            SEN6R::VALUE2 => true,
+impl<'a> SEN5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SEN5_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SEN6R {
-        match value {
-            false => SEN6R::VALUE1,
-            true => SEN6R::VALUE2,
+    #[doc = "Off: This step is not part of the stepper sequence"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(SEN5_A::VALUE1)
+    }
+    #[doc = "Active: This step is executed during the sequence"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(SEN5_A::VALUE2)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
+        self.w
+    }
+}
+#[doc = "Step x Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SEN6_A {
+    #[doc = "0: Off: This step is not part of the stepper sequence"]
+    VALUE1,
+    #[doc = "1: Active: This step is executed during the sequence"]
+    VALUE2,
+}
+impl From<SEN6_A> for bool {
+    #[inline(always)]
+    fn from(variant: SEN6_A) -> Self {
+        match variant {
+            SEN6_A::VALUE1 => false,
+            SEN6_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SEN6`"]
+pub type SEN6_R = crate::R<bool, SEN6_A>;
+impl SEN6_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SEN6_A {
+        match self.bits {
+            false => SEN6_A::VALUE1,
+            true => SEN6_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SEN6R::VALUE1
+        *self == SEN6_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SEN6R::VALUE2
+        *self == SEN6_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `SEN7`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SEN7R {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
+#[doc = "Write proxy for field `SEN6`"]
+pub struct SEN6_W<'a> {
+    w: &'a mut W,
 }
-impl SEN7R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SEN7R::VALUE1 => false,
-            SEN7R::VALUE2 => true,
+impl<'a> SEN6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SEN6_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SEN7R {
-        match value {
-            false => SEN7R::VALUE1,
-            true => SEN7R::VALUE2,
+    #[doc = "Off: This step is not part of the stepper sequence"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(SEN6_A::VALUE1)
+    }
+    #[doc = "Active: This step is executed during the sequence"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(SEN6_A::VALUE2)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
+        self.w
+    }
+}
+#[doc = "Step x Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SEN7_A {
+    #[doc = "0: Off: This step is not part of the stepper sequence"]
+    VALUE1,
+    #[doc = "1: Active: This step is executed during the sequence"]
+    VALUE2,
+}
+impl From<SEN7_A> for bool {
+    #[inline(always)]
+    fn from(variant: SEN7_A) -> Self {
+        match variant {
+            SEN7_A::VALUE1 => false,
+            SEN7_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SEN7`"]
+pub type SEN7_R = crate::R<bool, SEN7_A>;
+impl SEN7_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SEN7_A {
+        match self.bits {
+            false => SEN7_A::VALUE1,
+            true => SEN7_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SEN7R::VALUE1
+        *self == SEN7_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SEN7R::VALUE2
+        *self == SEN7_A::VALUE2
     }
 }
-#[doc = r" Proxy"]
-pub struct _KSEL0W<'a> {
+#[doc = "Write proxy for field `SEN7`"]
+pub struct SEN7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _KSEL0W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _KSEL1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _KSEL1W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _KSEL2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _KSEL2W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _KSEL3W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _KSEL3W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _KSEL4W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _KSEL4W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _KSEL5W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _KSEL5W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _KSEL6W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _KSEL6W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _KSEL7W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _KSEL7W<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SEN0`"]
-pub enum SEN0W {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
-}
-impl SEN0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SEN0W::VALUE1 => false,
-            SEN0W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SEN0W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SEN0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SEN0W) -> &'a mut W {
+impl<'a> SEN7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SEN7_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Off: This step is not part of the stepper sequence"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(SEN0W::VALUE1)
+        self.variant(SEN7_A::VALUE1)
     }
     #[doc = "Active: This step is executed during the sequence"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(SEN0W::VALUE2)
+        self.variant(SEN7_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SEN1`"]
-pub enum SEN1W {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
-}
-impl SEN1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SEN1W::VALUE1 => false,
-            SEN1W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SEN1W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SEN1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SEN1W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(SEN1W::VALUE1)
-    }
-    #[doc = "Active: This step is executed during the sequence"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(SEN1W::VALUE2)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 7;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SEN2`"]
-pub enum SEN2W {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
-}
-impl SEN2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SEN2W::VALUE1 => false,
-            SEN2W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SEN2W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SEN2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SEN2W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(SEN2W::VALUE1)
-    }
-    #[doc = "Active: This step is executed during the sequence"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(SEN2W::VALUE2)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SEN3`"]
-pub enum SEN3W {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
-}
-impl SEN3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SEN3W::VALUE1 => false,
-            SEN3W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SEN3W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SEN3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SEN3W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(SEN3W::VALUE1)
-    }
-    #[doc = "Active: This step is executed during the sequence"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(SEN3W::VALUE2)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SEN4`"]
-pub enum SEN4W {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
-}
-impl SEN4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SEN4W::VALUE1 => false,
-            SEN4W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SEN4W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SEN4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SEN4W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(SEN4W::VALUE1)
-    }
-    #[doc = "Active: This step is executed during the sequence"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(SEN4W::VALUE2)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SEN5`"]
-pub enum SEN5W {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
-}
-impl SEN5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SEN5W::VALUE1 => false,
-            SEN5W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SEN5W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SEN5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SEN5W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(SEN5W::VALUE1)
-    }
-    #[doc = "Active: This step is executed during the sequence"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(SEN5W::VALUE2)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 23;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SEN6`"]
-pub enum SEN6W {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
-}
-impl SEN6W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SEN6W::VALUE1 => false,
-            SEN6W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SEN6W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SEN6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SEN6W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(SEN6W::VALUE1)
-    }
-    #[doc = "Active: This step is executed during the sequence"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(SEN6W::VALUE2)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SEN7`"]
-pub enum SEN7W {
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    VALUE1,
-    #[doc = "Active: This step is executed during the sequence"]
-    VALUE2,
-}
-impl SEN7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SEN7W::VALUE1 => false,
-            SEN7W::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SEN7W<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SEN7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SEN7W) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Off: This step is not part of the stepper sequence"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(SEN7W::VALUE1)
-    }
-    #[doc = "Active: This step is executed during the sequence"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(SEN7W::VALUE2)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 31;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Kernel Select"]
-    #[inline]
-    pub fn ksel0(&self) -> KSEL0R {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        KSEL0R { bits }
+    #[inline(always)]
+    pub fn ksel0(&self) -> KSEL0_R {
+        KSEL0_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bits 4:6 - Kernel Select"]
-    #[inline]
-    pub fn ksel1(&self) -> KSEL1R {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        KSEL1R { bits }
+    #[inline(always)]
+    pub fn ksel1(&self) -> KSEL1_R {
+        KSEL1_R::new(((self.bits >> 4) & 0x07) as u8)
     }
     #[doc = "Bits 8:10 - Kernel Select"]
-    #[inline]
-    pub fn ksel2(&self) -> KSEL2R {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        KSEL2R { bits }
+    #[inline(always)]
+    pub fn ksel2(&self) -> KSEL2_R {
+        KSEL2_R::new(((self.bits >> 8) & 0x07) as u8)
     }
     #[doc = "Bits 12:14 - Kernel Select"]
-    #[inline]
-    pub fn ksel3(&self) -> KSEL3R {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        KSEL3R { bits }
+    #[inline(always)]
+    pub fn ksel3(&self) -> KSEL3_R {
+        KSEL3_R::new(((self.bits >> 12) & 0x07) as u8)
     }
     #[doc = "Bits 16:18 - Kernel Select"]
-    #[inline]
-    pub fn ksel4(&self) -> KSEL4R {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        KSEL4R { bits }
+    #[inline(always)]
+    pub fn ksel4(&self) -> KSEL4_R {
+        KSEL4_R::new(((self.bits >> 16) & 0x07) as u8)
     }
     #[doc = "Bits 20:22 - Kernel Select"]
-    #[inline]
-    pub fn ksel5(&self) -> KSEL5R {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        KSEL5R { bits }
+    #[inline(always)]
+    pub fn ksel5(&self) -> KSEL5_R {
+        KSEL5_R::new(((self.bits >> 20) & 0x07) as u8)
     }
     #[doc = "Bits 24:26 - Kernel Select"]
-    #[inline]
-    pub fn ksel6(&self) -> KSEL6R {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        KSEL6R { bits }
+    #[inline(always)]
+    pub fn ksel6(&self) -> KSEL6_R {
+        KSEL6_R::new(((self.bits >> 24) & 0x07) as u8)
     }
     #[doc = "Bits 28:30 - Kernel Select"]
-    #[inline]
-    pub fn ksel7(&self) -> KSEL7R {
-        let bits = {
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        KSEL7R { bits }
+    #[inline(always)]
+    pub fn ksel7(&self) -> KSEL7_R {
+        KSEL7_R::new(((self.bits >> 28) & 0x07) as u8)
     }
     #[doc = "Bit 3 - Step x Enable"]
-    #[inline]
-    pub fn sen0(&self) -> SEN0R {
-        SEN0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sen0(&self) -> SEN0_R {
+        SEN0_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Step x Enable"]
-    #[inline]
-    pub fn sen1(&self) -> SEN1R {
-        SEN1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sen1(&self) -> SEN1_R {
+        SEN1_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Step x Enable"]
-    #[inline]
-    pub fn sen2(&self) -> SEN2R {
-        SEN2R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sen2(&self) -> SEN2_R {
+        SEN2_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Step x Enable"]
-    #[inline]
-    pub fn sen3(&self) -> SEN3R {
-        SEN3R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sen3(&self) -> SEN3_R {
+        SEN3_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Step x Enable"]
-    #[inline]
-    pub fn sen4(&self) -> SEN4R {
-        SEN4R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sen4(&self) -> SEN4_R {
+        SEN4_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 23 - Step x Enable"]
-    #[inline]
-    pub fn sen5(&self) -> SEN5R {
-        SEN5R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sen5(&self) -> SEN5_R {
+        SEN5_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bit 27 - Step x Enable"]
-    #[inline]
-    pub fn sen6(&self) -> SEN6R {
-        SEN6R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sen6(&self) -> SEN6_R {
+        SEN6_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Step x Enable"]
-    #[inline]
-    pub fn sen7(&self) -> SEN7R {
-        SEN7R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sen7(&self) -> SEN7_R {
+        SEN7_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 152 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Kernel Select"]
-    #[inline]
-    pub fn ksel0(&mut self) -> _KSEL0W {
-        _KSEL0W { w: self }
+    #[inline(always)]
+    pub fn ksel0(&mut self) -> KSEL0_W {
+        KSEL0_W { w: self }
     }
     #[doc = "Bits 4:6 - Kernel Select"]
-    #[inline]
-    pub fn ksel1(&mut self) -> _KSEL1W {
-        _KSEL1W { w: self }
+    #[inline(always)]
+    pub fn ksel1(&mut self) -> KSEL1_W {
+        KSEL1_W { w: self }
     }
     #[doc = "Bits 8:10 - Kernel Select"]
-    #[inline]
-    pub fn ksel2(&mut self) -> _KSEL2W {
-        _KSEL2W { w: self }
+    #[inline(always)]
+    pub fn ksel2(&mut self) -> KSEL2_W {
+        KSEL2_W { w: self }
     }
     #[doc = "Bits 12:14 - Kernel Select"]
-    #[inline]
-    pub fn ksel3(&mut self) -> _KSEL3W {
-        _KSEL3W { w: self }
+    #[inline(always)]
+    pub fn ksel3(&mut self) -> KSEL3_W {
+        KSEL3_W { w: self }
     }
     #[doc = "Bits 16:18 - Kernel Select"]
-    #[inline]
-    pub fn ksel4(&mut self) -> _KSEL4W {
-        _KSEL4W { w: self }
+    #[inline(always)]
+    pub fn ksel4(&mut self) -> KSEL4_W {
+        KSEL4_W { w: self }
     }
     #[doc = "Bits 20:22 - Kernel Select"]
-    #[inline]
-    pub fn ksel5(&mut self) -> _KSEL5W {
-        _KSEL5W { w: self }
+    #[inline(always)]
+    pub fn ksel5(&mut self) -> KSEL5_W {
+        KSEL5_W { w: self }
     }
     #[doc = "Bits 24:26 - Kernel Select"]
-    #[inline]
-    pub fn ksel6(&mut self) -> _KSEL6W {
-        _KSEL6W { w: self }
+    #[inline(always)]
+    pub fn ksel6(&mut self) -> KSEL6_W {
+        KSEL6_W { w: self }
     }
     #[doc = "Bits 28:30 - Kernel Select"]
-    #[inline]
-    pub fn ksel7(&mut self) -> _KSEL7W {
-        _KSEL7W { w: self }
+    #[inline(always)]
+    pub fn ksel7(&mut self) -> KSEL7_W {
+        KSEL7_W { w: self }
     }
     #[doc = "Bit 3 - Step x Enable"]
-    #[inline]
-    pub fn sen0(&mut self) -> _SEN0W {
-        _SEN0W { w: self }
+    #[inline(always)]
+    pub fn sen0(&mut self) -> SEN0_W {
+        SEN0_W { w: self }
     }
     #[doc = "Bit 7 - Step x Enable"]
-    #[inline]
-    pub fn sen1(&mut self) -> _SEN1W {
-        _SEN1W { w: self }
+    #[inline(always)]
+    pub fn sen1(&mut self) -> SEN1_W {
+        SEN1_W { w: self }
     }
     #[doc = "Bit 11 - Step x Enable"]
-    #[inline]
-    pub fn sen2(&mut self) -> _SEN2W {
-        _SEN2W { w: self }
+    #[inline(always)]
+    pub fn sen2(&mut self) -> SEN2_W {
+        SEN2_W { w: self }
     }
     #[doc = "Bit 15 - Step x Enable"]
-    #[inline]
-    pub fn sen3(&mut self) -> _SEN3W {
-        _SEN3W { w: self }
+    #[inline(always)]
+    pub fn sen3(&mut self) -> SEN3_W {
+        SEN3_W { w: self }
     }
     #[doc = "Bit 19 - Step x Enable"]
-    #[inline]
-    pub fn sen4(&mut self) -> _SEN4W {
-        _SEN4W { w: self }
+    #[inline(always)]
+    pub fn sen4(&mut self) -> SEN4_W {
+        SEN4_W { w: self }
     }
     #[doc = "Bit 23 - Step x Enable"]
-    #[inline]
-    pub fn sen5(&mut self) -> _SEN5W {
-        _SEN5W { w: self }
+    #[inline(always)]
+    pub fn sen5(&mut self) -> SEN5_W {
+        SEN5_W { w: self }
     }
     #[doc = "Bit 27 - Step x Enable"]
-    #[inline]
-    pub fn sen6(&mut self) -> _SEN6W {
-        _SEN6W { w: self }
+    #[inline(always)]
+    pub fn sen6(&mut self) -> SEN6_W {
+        SEN6_W { w: self }
     }
     #[doc = "Bit 31 - Step x Enable"]
-    #[inline]
-    pub fn sen7(&mut self) -> _SEN7W {
-        _SEN7W { w: self }
+    #[inline(always)]
+    pub fn sen7(&mut self) -> SEN7_W {
+        SEN7_W { w: self }
     }
 }

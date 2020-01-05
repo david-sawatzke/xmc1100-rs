@@ -1,566 +1,432 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ICSR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register ICSR"]
+pub type R = crate::R<u32, super::ICSR>;
+#[doc = "Writer for register ICSR"]
+pub type W = crate::W<u32, super::ICSR>;
+#[doc = "Register ICSR `reset()`'s with value 0"]
+impl crate::ResetValue for super::ICSR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `VECTACTIVE`"]
+#[doc = "Active Exception Number\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VECTACTIVER {
-    #[doc = "Thread mode"]
+pub enum VECTACTIVE_A {
+    #[doc = "0: Thread mode"]
     VALUE1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl VECTACTIVER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            VECTACTIVER::VALUE1 => 0,
-            VECTACTIVER::_Reserved(bits) => bits,
+impl From<VECTACTIVE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: VECTACTIVE_A) -> Self {
+        match variant {
+            VECTACTIVE_A::VALUE1 => 0,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> VECTACTIVER {
-        match value {
-            0 => VECTACTIVER::VALUE1,
-            i => VECTACTIVER::_Reserved(i),
+}
+#[doc = "Reader of field `VECTACTIVE`"]
+pub type VECTACTIVE_R = crate::R<u8, VECTACTIVE_A>;
+impl VECTACTIVE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, VECTACTIVE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(VECTACTIVE_A::VALUE1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == VECTACTIVER::VALUE1
+        *self == VECTACTIVE_A::VALUE1
     }
 }
-#[doc = "Possible values of the field `VECTPENDING`"]
+#[doc = "Pending Exception Number\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VECTPENDINGR {
-    #[doc = "No pending exceptions"]
+pub enum VECTPENDING_A {
+    #[doc = "0: No pending exceptions"]
     VALUE1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl VECTPENDINGR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            VECTPENDINGR::VALUE1 => 0,
-            VECTPENDINGR::_Reserved(bits) => bits,
+impl From<VECTPENDING_A> for u8 {
+    #[inline(always)]
+    fn from(variant: VECTPENDING_A) -> Self {
+        match variant {
+            VECTPENDING_A::VALUE1 => 0,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> VECTPENDINGR {
-        match value {
-            0 => VECTPENDINGR::VALUE1,
-            i => VECTPENDINGR::_Reserved(i),
+}
+#[doc = "Reader of field `VECTPENDING`"]
+pub type VECTPENDING_R = crate::R<u8, VECTPENDING_A>;
+impl VECTPENDING_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, VECTPENDING_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(VECTPENDING_A::VALUE1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == VECTPENDINGR::VALUE1
+        *self == VECTPENDING_A::VALUE1
     }
 }
-#[doc = "Possible values of the field `ISRPENDING`"]
+#[doc = "Interrupt Pending Flag\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ISRPENDINGR {
-    #[doc = "Interrupt not pending"]
+pub enum ISRPENDING_A {
+    #[doc = "0: Interrupt not pending"]
     VALUE1,
-    #[doc = "Interrupt pending."]
+    #[doc = "1: Interrupt pending."]
     VALUE2,
 }
-impl ISRPENDINGR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ISRPENDINGR::VALUE1 => false,
-            ISRPENDINGR::VALUE2 => true,
+impl From<ISRPENDING_A> for bool {
+    #[inline(always)]
+    fn from(variant: ISRPENDING_A) -> Self {
+        match variant {
+            ISRPENDING_A::VALUE1 => false,
+            ISRPENDING_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ISRPENDINGR {
-        match value {
-            false => ISRPENDINGR::VALUE1,
-            true => ISRPENDINGR::VALUE2,
+}
+#[doc = "Reader of field `ISRPENDING`"]
+pub type ISRPENDING_R = crate::R<bool, ISRPENDING_A>;
+impl ISRPENDING_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ISRPENDING_A {
+        match self.bits {
+            false => ISRPENDING_A::VALUE1,
+            true => ISRPENDING_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == ISRPENDINGR::VALUE1
+        *self == ISRPENDING_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == ISRPENDINGR::VALUE2
+        *self == ISRPENDING_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `PENDSTSET`"]
+#[doc = "SysTick Exception Clear-pending\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PENDSTSETR {
-    #[doc = "SysTick exception is not pending"]
+pub enum PENDSTCLR_AW {
+    #[doc = "0: No effect"]
     VALUE1,
-    #[doc = "SysTick exception is pending."]
+    #[doc = "1: removes the pending state from the SysTick exception."]
     VALUE2,
 }
-impl PENDSTSETR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PENDSTSETR::VALUE1 => false,
-            PENDSTSETR::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PENDSTSETR {
-        match value {
-            false => PENDSTSETR::VALUE1,
-            true => PENDSTSETR::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PENDSTSETR::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PENDSTSETR::VALUE2
-    }
-}
-#[doc = "Possible values of the field `PENDSVSET`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PENDSVSETR {
-    #[doc = "PendSV exception is not pending."]
-    VALUE1,
-    #[doc = "PendSV excepton is pending."]
-    VALUE2,
-}
-impl PENDSVSETR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PENDSVSETR::VALUE1 => false,
-            PENDSVSETR::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PENDSVSETR {
-        match value {
-            false => PENDSVSETR::VALUE1,
-            true => PENDSVSETR::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PENDSVSETR::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PENDSVSETR::VALUE2
-    }
-}
-#[doc = "Values that can be written to the field `PENDSTCLR`"]
-pub enum PENDSTCLRW {
-    #[doc = "No effect"]
-    VALUE1,
-    #[doc = "removes the pending state from the SysTick exception."]
-    VALUE2,
-}
-impl PENDSTCLRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PENDSTCLRW::VALUE1 => false,
-            PENDSTCLRW::VALUE2 => true,
+impl From<PENDSTCLR_AW> for bool {
+    #[inline(always)]
+    fn from(variant: PENDSTCLR_AW) -> Self {
+        match variant {
+            PENDSTCLR_AW::VALUE1 => false,
+            PENDSTCLR_AW::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PENDSTCLRW<'a> {
+#[doc = "Write proxy for field `PENDSTCLR`"]
+pub struct PENDSTCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PENDSTCLRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PENDSTCLRW) -> &'a mut W {
+impl<'a> PENDSTCLR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PENDSTCLR_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No effect"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PENDSTCLRW::VALUE1)
+        self.variant(PENDSTCLR_AW::VALUE1)
     }
     #[doc = "removes the pending state from the SysTick exception."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PENDSTCLRW::VALUE2)
+        self.variant(PENDSTCLR_AW::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 25;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PENDSTSET`"]
-pub enum PENDSTSETW {
+#[doc = "SysTick Exception Set-pending\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PENDSTSET_A {
+    #[doc = "0: SysTick exception is not pending"]
+    VALUE1,
+    #[doc = "1: SysTick exception is pending."]
+    VALUE2,
+}
+impl From<PENDSTSET_A> for bool {
+    #[inline(always)]
+    fn from(variant: PENDSTSET_A) -> Self {
+        match variant {
+            PENDSTSET_A::VALUE1 => false,
+            PENDSTSET_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `PENDSTSET`"]
+pub type PENDSTSET_R = crate::R<bool, PENDSTSET_A>;
+impl PENDSTSET_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PENDSTSET_A {
+        match self.bits {
+            false => PENDSTSET_A::VALUE1,
+            true => PENDSTSET_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PENDSTSET_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PENDSTSET_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `PENDSTSET`"]
+pub struct PENDSTSET_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PENDSTSET_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PENDSTSET_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "SysTick exception is not pending"]
-    VALUE1,
-    #[doc = "SysTick exception is pending."]
-    VALUE2,
-}
-impl PENDSTSETW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PENDSTSETW::VALUE1 => false,
-            PENDSTSETW::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PENDSTSETW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PENDSTSETW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PENDSTSETW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "SysTick exception is not pending"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PENDSTSETW::VALUE1)
+        self.variant(PENDSTSET_A::VALUE1)
     }
     #[doc = "SysTick exception is pending."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PENDSTSETW::VALUE2)
+        self.variant(PENDSTSET_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PENDSVCLR`"]
-pub enum PENDSVCLRW {
-    #[doc = "Do not clear."]
+#[doc = "PendSV Clear Pending\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PENDSVCLR_AW {
+    #[doc = "0: Do not clear."]
     VALUE1,
-    #[doc = "Removes pending state from PendSV exception."]
+    #[doc = "1: Removes pending state from PendSV exception."]
     VALUE2,
 }
-impl PENDSVCLRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PENDSVCLRW::VALUE1 => false,
-            PENDSVCLRW::VALUE2 => true,
+impl From<PENDSVCLR_AW> for bool {
+    #[inline(always)]
+    fn from(variant: PENDSVCLR_AW) -> Self {
+        match variant {
+            PENDSVCLR_AW::VALUE1 => false,
+            PENDSVCLR_AW::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PENDSVCLRW<'a> {
+#[doc = "Write proxy for field `PENDSVCLR`"]
+pub struct PENDSVCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PENDSVCLRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PENDSVCLRW) -> &'a mut W {
+impl<'a> PENDSVCLR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PENDSVCLR_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Do not clear."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PENDSVCLRW::VALUE1)
+        self.variant(PENDSVCLR_AW::VALUE1)
     }
     #[doc = "Removes pending state from PendSV exception."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PENDSVCLRW::VALUE2)
+        self.variant(PENDSVCLR_AW::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PENDSVSET`"]
-pub enum PENDSVSETW {
-    #[doc = "PendSV exception is not pending."]
+#[doc = "PendSV Set Pending\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PENDSVSET_A {
+    #[doc = "0: PendSV exception is not pending."]
     VALUE1,
-    #[doc = "PendSV excepton is pending."]
+    #[doc = "1: PendSV excepton is pending."]
     VALUE2,
 }
-impl PENDSVSETW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PENDSVSETW::VALUE1 => false,
-            PENDSVSETW::VALUE2 => true,
+impl From<PENDSVSET_A> for bool {
+    #[inline(always)]
+    fn from(variant: PENDSVSET_A) -> Self {
+        match variant {
+            PENDSVSET_A::VALUE1 => false,
+            PENDSVSET_A::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PENDSVSETW<'a> {
+#[doc = "Reader of field `PENDSVSET`"]
+pub type PENDSVSET_R = crate::R<bool, PENDSVSET_A>;
+impl PENDSVSET_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PENDSVSET_A {
+        match self.bits {
+            false => PENDSVSET_A::VALUE1,
+            true => PENDSVSET_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PENDSVSET_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PENDSVSET_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `PENDSVSET`"]
+pub struct PENDSVSET_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PENDSVSETW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PENDSVSETW) -> &'a mut W {
+impl<'a> PENDSVSET_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PENDSVSET_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PendSV exception is not pending."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PENDSVSETW::VALUE1)
+        self.variant(PENDSVSET_A::VALUE1)
     }
     #[doc = "PendSV excepton is pending."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PENDSVSETW::VALUE2)
+        self.variant(PENDSVSET_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 28;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:5 - Active Exception Number"]
-    #[inline]
-    pub fn vectactive(&self) -> VECTACTIVER {
-        VECTACTIVER::_from({
-            const MASK: u8 = 63;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn vectactive(&self) -> VECTACTIVE_R {
+        VECTACTIVE_R::new((self.bits & 0x3f) as u8)
     }
     #[doc = "Bits 12:17 - Pending Exception Number"]
-    #[inline]
-    pub fn vectpending(&self) -> VECTPENDINGR {
-        VECTPENDINGR::_from({
-            const MASK: u8 = 63;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn vectpending(&self) -> VECTPENDING_R {
+        VECTPENDING_R::new(((self.bits >> 12) & 0x3f) as u8)
     }
     #[doc = "Bit 22 - Interrupt Pending Flag"]
-    #[inline]
-    pub fn isrpending(&self) -> ISRPENDINGR {
-        ISRPENDINGR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn isrpending(&self) -> ISRPENDING_R {
+        ISRPENDING_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 26 - SysTick Exception Set-pending"]
-    #[inline]
-    pub fn pendstset(&self) -> PENDSTSETR {
-        PENDSTSETR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pendstset(&self) -> PENDSTSET_R {
+        PENDSTSET_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 28 - PendSV Set Pending"]
-    #[inline]
-    pub fn pendsvset(&self) -> PENDSVSETR {
-        PENDSVSETR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pendsvset(&self) -> PENDSVSET_R {
+        PENDSVSET_R::new(((self.bits >> 28) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 25 - SysTick Exception Clear-pending"]
-    #[inline]
-    pub fn pendstclr(&mut self) -> _PENDSTCLRW {
-        _PENDSTCLRW { w: self }
+    #[inline(always)]
+    pub fn pendstclr(&mut self) -> PENDSTCLR_W {
+        PENDSTCLR_W { w: self }
     }
     #[doc = "Bit 26 - SysTick Exception Set-pending"]
-    #[inline]
-    pub fn pendstset(&mut self) -> _PENDSTSETW {
-        _PENDSTSETW { w: self }
+    #[inline(always)]
+    pub fn pendstset(&mut self) -> PENDSTSET_W {
+        PENDSTSET_W { w: self }
     }
     #[doc = "Bit 27 - PendSV Clear Pending"]
-    #[inline]
-    pub fn pendsvclr(&mut self) -> _PENDSVCLRW {
-        _PENDSVCLRW { w: self }
+    #[inline(always)]
+    pub fn pendsvclr(&mut self) -> PENDSVCLR_W {
+        PENDSVCLR_W { w: self }
     }
     #[doc = "Bit 28 - PendSV Set Pending"]
-    #[inline]
-    pub fn pendsvset(&mut self) -> _PENDSVSETW {
-        _PENDSVSETW { w: self }
+    #[inline(always)]
+    pub fn pendsvset(&mut self) -> PENDSVSET_W {
+        PENDSVSET_W { w: self }
     }
 }

@@ -1,183 +1,104 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u16,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u16,
-}
-impl super::ANATSECTRL {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register ANATSECTRL"]
+pub type R = crate::R<u16, super::ANATSECTRL>;
+#[doc = "Writer for register ANATSECTRL"]
+pub type W = crate::W<u16, super::ANATSECTRL>;
+#[doc = "Register ANATSECTRL `reset()`'s with value 0"]
+impl crate::ResetValue for super::ANATSECTRL {
+    type Type = u16;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `TSE_EN`"]
+#[doc = "Temperature sensor enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TSE_ENR {
-    #[doc = "Temperature sensor is disabled"]
+pub enum TSE_EN_A {
+    #[doc = "0: Temperature sensor is disabled"]
     VALUE1,
-    #[doc = "Temperature sensor is switched on"]
+    #[doc = "1: Temperature sensor is switched on"]
     VALUE2,
 }
-impl TSE_ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            TSE_ENR::VALUE1 => false,
-            TSE_ENR::VALUE2 => true,
+impl From<TSE_EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: TSE_EN_A) -> Self {
+        match variant {
+            TSE_EN_A::VALUE1 => false,
+            TSE_EN_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> TSE_ENR {
-        match value {
-            false => TSE_ENR::VALUE1,
-            true => TSE_ENR::VALUE2,
+}
+#[doc = "Reader of field `TSE_EN`"]
+pub type TSE_EN_R = crate::R<bool, TSE_EN_A>;
+impl TSE_EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TSE_EN_A {
+        match self.bits {
+            false => TSE_EN_A::VALUE1,
+            true => TSE_EN_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == TSE_ENR::VALUE1
+        *self == TSE_EN_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == TSE_ENR::VALUE2
+        *self == TSE_EN_A::VALUE2
     }
 }
-#[doc = "Values that can be written to the field `TSE_EN`"]
-pub enum TSE_ENW {
-    #[doc = "Temperature sensor is disabled"]
-    VALUE1,
-    #[doc = "Temperature sensor is switched on"]
-    VALUE2,
-}
-impl TSE_ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TSE_ENW::VALUE1 => false,
-            TSE_ENW::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TSE_ENW<'a> {
+#[doc = "Write proxy for field `TSE_EN`"]
+pub struct TSE_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TSE_ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TSE_ENW) -> &'a mut W {
+impl<'a> TSE_EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TSE_EN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Temperature sensor is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(TSE_ENW::VALUE1)
+        self.variant(TSE_EN_A::VALUE1)
     }
     #[doc = "Temperature sensor is switched on"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(TSE_ENW::VALUE2)
+        self.variant(TSE_EN_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u16) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
     #[doc = "Bit 0 - Temperature sensor enable"]
-    #[inline]
-    pub fn tse_en(&self) -> TSE_ENR {
-        TSE_ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn tse_en(&self) -> TSE_EN_R {
+        TSE_EN_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u16) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Temperature sensor enable"]
-    #[inline]
-    pub fn tse_en(&mut self) -> _TSE_ENW {
-        _TSE_ENW { w: self }
+    #[inline(always)]
+    pub fn tse_en(&mut self) -> TSE_EN_W {
+        TSE_EN_W { w: self }
     }
 }

@@ -1,603 +1,429 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RSTCON {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register RSTCON"]
+pub type R = crate::R<u32, super::RSTCON>;
+#[doc = "Writer for register RSTCON"]
+pub type W = crate::W<u32, super::RSTCON>;
+#[doc = "Register RSTCON `reset()`'s with value 0"]
+impl crate::ResetValue for super::RSTCON {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `ECCRSTEN`"]
+#[doc = "Enable ECC Error Reset\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ECCRSTENR {
-    #[doc = "No reset when ECC double bit error occur"]
+pub enum ECCRSTEN_A {
+    #[doc = "0: No reset when ECC double bit error occur"]
     VALUE1,
-    #[doc = "Reset when ECC double bit error occur"]
+    #[doc = "1: Reset when ECC double bit error occur"]
     VALUE2,
 }
-impl ECCRSTENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ECCRSTENR::VALUE1 => false,
-            ECCRSTENR::VALUE2 => true,
+impl From<ECCRSTEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: ECCRSTEN_A) -> Self {
+        match variant {
+            ECCRSTEN_A::VALUE1 => false,
+            ECCRSTEN_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ECCRSTENR {
-        match value {
-            false => ECCRSTENR::VALUE1,
-            true => ECCRSTENR::VALUE2,
+}
+#[doc = "Reader of field `ECCRSTEN`"]
+pub type ECCRSTEN_R = crate::R<bool, ECCRSTEN_A>;
+impl ECCRSTEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ECCRSTEN_A {
+        match self.bits {
+            false => ECCRSTEN_A::VALUE1,
+            true => ECCRSTEN_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == ECCRSTENR::VALUE1
+        *self == ECCRSTEN_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == ECCRSTENR::VALUE2
+        *self == ECCRSTEN_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `LOCRSTEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LOCRSTENR {
-    #[doc = "No reset when loss of clock occur"]
-    VALUE1,
-    #[doc = "Reset when loss of clock occur"]
-    VALUE2,
-}
-impl LOCRSTENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LOCRSTENR::VALUE1 => false,
-            LOCRSTENR::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LOCRSTENR {
-        match value {
-            false => LOCRSTENR::VALUE1,
-            true => LOCRSTENR::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == LOCRSTENR::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == LOCRSTENR::VALUE2
-    }
-}
-#[doc = "Possible values of the field `SPERSTEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SPERSTENR {
-    #[doc = "No reset when SRAM parity error occur"]
-    VALUE1,
-    #[doc = "Reset when SRAM parity error occur"]
-    VALUE2,
-}
-impl SPERSTENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SPERSTENR::VALUE1 => false,
-            SPERSTENR::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SPERSTENR {
-        match value {
-            false => SPERSTENR::VALUE1,
-            true => SPERSTENR::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == SPERSTENR::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == SPERSTENR::VALUE2
-    }
-}
-#[doc = "Possible values of the field `U0PERSTEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum U0PERSTENR {
-    #[doc = "No reset when USIC0 memory parity error occur"]
-    VALUE1,
-    #[doc = "Reset when USIC0 memory parity error occur"]
-    VALUE2,
-}
-impl U0PERSTENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            U0PERSTENR::VALUE1 => false,
-            U0PERSTENR::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> U0PERSTENR {
-        match value {
-            false => U0PERSTENR::VALUE1,
-            true => U0PERSTENR::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == U0PERSTENR::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == U0PERSTENR::VALUE2
-    }
-}
-#[doc = "Values that can be written to the field `ECCRSTEN`"]
-pub enum ECCRSTENW {
-    #[doc = "No reset when ECC double bit error occur"]
-    VALUE1,
-    #[doc = "Reset when ECC double bit error occur"]
-    VALUE2,
-}
-impl ECCRSTENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ECCRSTENW::VALUE1 => false,
-            ECCRSTENW::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ECCRSTENW<'a> {
+#[doc = "Write proxy for field `ECCRSTEN`"]
+pub struct ECCRSTEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECCRSTENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ECCRSTENW) -> &'a mut W {
+impl<'a> ECCRSTEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ECCRSTEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No reset when ECC double bit error occur"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(ECCRSTENW::VALUE1)
+        self.variant(ECCRSTEN_A::VALUE1)
     }
     #[doc = "Reset when ECC double bit error occur"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(ECCRSTENW::VALUE2)
+        self.variant(ECCRSTEN_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LOCRSTEN`"]
-pub enum LOCRSTENW {
+#[doc = "Enable Loss of Clock Reset\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LOCRSTEN_A {
+    #[doc = "0: No reset when loss of clock occur"]
+    VALUE1,
+    #[doc = "1: Reset when loss of clock occur"]
+    VALUE2,
+}
+impl From<LOCRSTEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: LOCRSTEN_A) -> Self {
+        match variant {
+            LOCRSTEN_A::VALUE1 => false,
+            LOCRSTEN_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `LOCRSTEN`"]
+pub type LOCRSTEN_R = crate::R<bool, LOCRSTEN_A>;
+impl LOCRSTEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LOCRSTEN_A {
+        match self.bits {
+            false => LOCRSTEN_A::VALUE1,
+            true => LOCRSTEN_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == LOCRSTEN_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == LOCRSTEN_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `LOCRSTEN`"]
+pub struct LOCRSTEN_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> LOCRSTEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LOCRSTEN_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "No reset when loss of clock occur"]
-    VALUE1,
-    #[doc = "Reset when loss of clock occur"]
-    VALUE2,
-}
-impl LOCRSTENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LOCRSTENW::VALUE1 => false,
-            LOCRSTENW::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _LOCRSTENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _LOCRSTENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LOCRSTENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No reset when loss of clock occur"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(LOCRSTENW::VALUE1)
+        self.variant(LOCRSTEN_A::VALUE1)
     }
     #[doc = "Reset when loss of clock occur"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(LOCRSTENW::VALUE2)
+        self.variant(LOCRSTEN_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPERSTEN`"]
-pub enum SPERSTENW {
-    #[doc = "No reset when SRAM parity error occur"]
+#[doc = "Enable 16kbytes SRAM Parity Error Reset\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SPERSTEN_A {
+    #[doc = "0: No reset when SRAM parity error occur"]
     VALUE1,
-    #[doc = "Reset when SRAM parity error occur"]
+    #[doc = "1: Reset when SRAM parity error occur"]
     VALUE2,
 }
-impl SPERSTENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SPERSTENW::VALUE1 => false,
-            SPERSTENW::VALUE2 => true,
+impl From<SPERSTEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: SPERSTEN_A) -> Self {
+        match variant {
+            SPERSTEN_A::VALUE1 => false,
+            SPERSTEN_A::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SPERSTENW<'a> {
+#[doc = "Reader of field `SPERSTEN`"]
+pub type SPERSTEN_R = crate::R<bool, SPERSTEN_A>;
+impl SPERSTEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SPERSTEN_A {
+        match self.bits {
+            false => SPERSTEN_A::VALUE1,
+            true => SPERSTEN_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == SPERSTEN_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == SPERSTEN_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `SPERSTEN`"]
+pub struct SPERSTEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPERSTENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SPERSTENW) -> &'a mut W {
+impl<'a> SPERSTEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SPERSTEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No reset when SRAM parity error occur"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(SPERSTENW::VALUE1)
+        self.variant(SPERSTEN_A::VALUE1)
     }
     #[doc = "Reset when SRAM parity error occur"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(SPERSTENW::VALUE2)
+        self.variant(SPERSTEN_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `U0PERSTEN`"]
-pub enum U0PERSTENW {
-    #[doc = "No reset when USIC0 memory parity error occur"]
+#[doc = "Enable USIC0 SRAM Parity Error Reset\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum U0PERSTEN_A {
+    #[doc = "0: No reset when USIC0 memory parity error occur"]
     VALUE1,
-    #[doc = "Reset when USIC0 memory parity error occur"]
+    #[doc = "1: Reset when USIC0 memory parity error occur"]
     VALUE2,
 }
-impl U0PERSTENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            U0PERSTENW::VALUE1 => false,
-            U0PERSTENW::VALUE2 => true,
+impl From<U0PERSTEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: U0PERSTEN_A) -> Self {
+        match variant {
+            U0PERSTEN_A::VALUE1 => false,
+            U0PERSTEN_A::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _U0PERSTENW<'a> {
+#[doc = "Reader of field `U0PERSTEN`"]
+pub type U0PERSTEN_R = crate::R<bool, U0PERSTEN_A>;
+impl U0PERSTEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> U0PERSTEN_A {
+        match self.bits {
+            false => U0PERSTEN_A::VALUE1,
+            true => U0PERSTEN_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == U0PERSTEN_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == U0PERSTEN_A::VALUE2
+    }
+}
+#[doc = "Write proxy for field `U0PERSTEN`"]
+pub struct U0PERSTEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _U0PERSTENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: U0PERSTENW) -> &'a mut W {
+impl<'a> U0PERSTEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: U0PERSTEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No reset when USIC0 memory parity error occur"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(U0PERSTENW::VALUE1)
+        self.variant(U0PERSTEN_A::VALUE1)
     }
     #[doc = "Reset when USIC0 memory parity error occur"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(U0PERSTENW::VALUE2)
+        self.variant(U0PERSTEN_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MRSTEN`"]
-pub enum MRSTENW {
-    #[doc = "No effect"]
+#[doc = "Enable Master Reset\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MRSTEN_AW {
+    #[doc = "0: No effect"]
     VALUE1,
-    #[doc = "Triggered Master reset"]
+    #[doc = "1: Triggered Master reset"]
     VALUE2,
 }
-impl MRSTENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MRSTENW::VALUE1 => false,
-            MRSTENW::VALUE2 => true,
+impl From<MRSTEN_AW> for bool {
+    #[inline(always)]
+    fn from(variant: MRSTEN_AW) -> Self {
+        match variant {
+            MRSTEN_AW::VALUE1 => false,
+            MRSTEN_AW::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _MRSTENW<'a> {
+#[doc = "Write proxy for field `MRSTEN`"]
+pub struct MRSTEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MRSTENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MRSTENW) -> &'a mut W {
+impl<'a> MRSTEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MRSTEN_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "No effect"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(MRSTENW::VALUE1)
+        self.variant(MRSTEN_AW::VALUE1)
     }
     #[doc = "Triggered Master reset"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(MRSTENW::VALUE2)
+        self.variant(MRSTEN_AW::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Enable ECC Error Reset"]
-    #[inline]
-    pub fn eccrsten(&self) -> ECCRSTENR {
-        ECCRSTENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn eccrsten(&self) -> ECCRSTEN_R {
+        ECCRSTEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Enable Loss of Clock Reset"]
-    #[inline]
-    pub fn locrsten(&self) -> LOCRSTENR {
-        LOCRSTENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn locrsten(&self) -> LOCRSTEN_R {
+        LOCRSTEN_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Enable 16kbytes SRAM Parity Error Reset"]
-    #[inline]
-    pub fn spersten(&self) -> SPERSTENR {
-        SPERSTENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn spersten(&self) -> SPERSTEN_R {
+        SPERSTEN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Enable USIC0 SRAM Parity Error Reset"]
-    #[inline]
-    pub fn u0persten(&self) -> U0PERSTENR {
-        U0PERSTENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn u0persten(&self) -> U0PERSTEN_R {
+        U0PERSTEN_R::new(((self.bits >> 3) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Enable ECC Error Reset"]
-    #[inline]
-    pub fn eccrsten(&mut self) -> _ECCRSTENW {
-        _ECCRSTENW { w: self }
+    #[inline(always)]
+    pub fn eccrsten(&mut self) -> ECCRSTEN_W {
+        ECCRSTEN_W { w: self }
     }
     #[doc = "Bit 1 - Enable Loss of Clock Reset"]
-    #[inline]
-    pub fn locrsten(&mut self) -> _LOCRSTENW {
-        _LOCRSTENW { w: self }
+    #[inline(always)]
+    pub fn locrsten(&mut self) -> LOCRSTEN_W {
+        LOCRSTEN_W { w: self }
     }
     #[doc = "Bit 2 - Enable 16kbytes SRAM Parity Error Reset"]
-    #[inline]
-    pub fn spersten(&mut self) -> _SPERSTENW {
-        _SPERSTENW { w: self }
+    #[inline(always)]
+    pub fn spersten(&mut self) -> SPERSTEN_W {
+        SPERSTEN_W { w: self }
     }
     #[doc = "Bit 3 - Enable USIC0 SRAM Parity Error Reset"]
-    #[inline]
-    pub fn u0persten(&mut self) -> _U0PERSTENW {
-        _U0PERSTENW { w: self }
+    #[inline(always)]
+    pub fn u0persten(&mut self) -> U0PERSTEN_W {
+        U0PERSTEN_W { w: self }
     }
     #[doc = "Bit 16 - Enable Master Reset"]
-    #[inline]
-    pub fn mrsten(&mut self) -> _MRSTENW {
-        _MRSTENW { w: self }
+    #[inline(always)]
+    pub fn mrsten(&mut self) -> MRSTEN_W {
+        MRSTEN_W { w: self }
     }
 }

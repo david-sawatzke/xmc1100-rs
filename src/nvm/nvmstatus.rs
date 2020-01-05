@@ -1,365 +1,287 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u16,
-}
-impl super::NVMSTATUS {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `WRPERR`"]
+#[doc = "Reader of register NVMSTATUS"]
+pub type R = crate::R<u16, super::NVMSTATUS>;
+#[doc = "Write Protocol Error\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WRPERRR {
-    #[doc = "No write protocol failure occurred."]
+pub enum WRPERR_A {
+    #[doc = "0: No write protocol failure occurred."]
     VALUE1,
-    #[doc = "At least one write protocol failure was detected."]
+    #[doc = "1: At least one write protocol failure was detected."]
     VALUE2,
 }
-impl WRPERRR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            WRPERRR::VALUE1 => false,
-            WRPERRR::VALUE2 => true,
+impl From<WRPERR_A> for bool {
+    #[inline(always)]
+    fn from(variant: WRPERR_A) -> Self {
+        match variant {
+            WRPERR_A::VALUE1 => false,
+            WRPERR_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> WRPERRR {
-        match value {
-            false => WRPERRR::VALUE1,
-            true => WRPERRR::VALUE2,
+}
+#[doc = "Reader of field `WRPERR`"]
+pub type WRPERR_R = crate::R<bool, WRPERR_A>;
+impl WRPERR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WRPERR_A {
+        match self.bits {
+            false => WRPERR_A::VALUE1,
+            true => WRPERR_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == WRPERRR::VALUE1
+        *self == WRPERR_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == WRPERRR::VALUE2
+        *self == WRPERR_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `ECC2READ`"]
+#[doc = "ECC2 Read\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ECC2READR {
-    #[doc = "No ECC two bit failure during memory read operations."]
+pub enum ECC2READ_A {
+    #[doc = "0: No ECC two bit failure during memory read operations."]
     VALUE1,
-    #[doc = "At least one ECC two bit failure was detected."]
+    #[doc = "1: At least one ECC two bit failure was detected."]
     VALUE2,
 }
-impl ECC2READR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ECC2READR::VALUE1 => false,
-            ECC2READR::VALUE2 => true,
+impl From<ECC2READ_A> for bool {
+    #[inline(always)]
+    fn from(variant: ECC2READ_A) -> Self {
+        match variant {
+            ECC2READ_A::VALUE1 => false,
+            ECC2READ_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ECC2READR {
-        match value {
-            false => ECC2READR::VALUE1,
-            true => ECC2READR::VALUE2,
+}
+#[doc = "Reader of field `ECC2READ`"]
+pub type ECC2READ_R = crate::R<bool, ECC2READ_A>;
+impl ECC2READ_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ECC2READ_A {
+        match self.bits {
+            false => ECC2READ_A::VALUE1,
+            true => ECC2READ_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == ECC2READR::VALUE1
+        *self == ECC2READ_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == ECC2READR::VALUE2
+        *self == ECC2READ_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `ECC1READ`"]
+#[doc = "ECC1 Read\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ECC1READR {
-    #[doc = "No ECC single bit failure occurred."]
+pub enum ECC1READ_A {
+    #[doc = "0: No ECC single bit failure occurred."]
     VALUE1,
-    #[doc = "At least one ECC single bit failure was detected and corrected."]
+    #[doc = "1: At least one ECC single bit failure was detected and corrected."]
     VALUE2,
 }
-impl ECC1READR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ECC1READR::VALUE1 => false,
-            ECC1READR::VALUE2 => true,
+impl From<ECC1READ_A> for bool {
+    #[inline(always)]
+    fn from(variant: ECC1READ_A) -> Self {
+        match variant {
+            ECC1READ_A::VALUE1 => false,
+            ECC1READ_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ECC1READR {
-        match value {
-            false => ECC1READR::VALUE1,
-            true => ECC1READR::VALUE2,
+}
+#[doc = "Reader of field `ECC1READ`"]
+pub type ECC1READ_R = crate::R<bool, ECC1READ_A>;
+impl ECC1READ_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ECC1READ_A {
+        match self.bits {
+            false => ECC1READ_A::VALUE1,
+            true => ECC1READ_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == ECC1READR::VALUE1
+        *self == ECC1READ_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == ECC1READR::VALUE2
+        *self == ECC1READ_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `VERR`"]
+#[doc = "Verify Error\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VERRR {
-    #[doc = "No fail bit."]
+pub enum VERR_A {
+    #[doc = "0: No fail bit."]
     VALUE1,
-    #[doc = "One fail bit in one data block."]
+    #[doc = "1: One fail bit in one data block."]
     VALUE2,
-    #[doc = "Two fail bits in two different data blocks."]
+    #[doc = "2: Two fail bits in two different data blocks."]
     VALUE3,
-    #[doc = "Two or more fail bits in one data block, or three or more fail bits overall."]
+    #[doc = "3: Two or more fail bits in one data block, or three or more fail bits overall."]
     VALUE4,
 }
-impl VERRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            VERRR::VALUE1 => 0,
-            VERRR::VALUE2 => 1,
-            VERRR::VALUE3 => 2,
-            VERRR::VALUE4 => 3,
+impl From<VERR_A> for u8 {
+    #[inline(always)]
+    fn from(variant: VERR_A) -> Self {
+        match variant {
+            VERR_A::VALUE1 => 0,
+            VERR_A::VALUE2 => 1,
+            VERR_A::VALUE3 => 2,
+            VERR_A::VALUE4 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> VERRR {
-        match value {
-            0 => VERRR::VALUE1,
-            1 => VERRR::VALUE2,
-            2 => VERRR::VALUE3,
-            3 => VERRR::VALUE4,
+}
+#[doc = "Reader of field `VERR`"]
+pub type VERR_R = crate::R<u8, VERR_A>;
+impl VERR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> VERR_A {
+        match self.bits {
+            0 => VERR_A::VALUE1,
+            1 => VERR_A::VALUE2,
+            2 => VERR_A::VALUE3,
+            3 => VERR_A::VALUE4,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == VERRR::VALUE1
+        *self == VERR_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == VERRR::VALUE2
+        *self == VERR_A::VALUE2
     }
     #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value3(&self) -> bool {
-        *self == VERRR::VALUE3
+        *self == VERR_A::VALUE3
     }
     #[doc = "Checks if the value of the field is `VALUE4`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value4(&self) -> bool {
-        *self == VERRR::VALUE4
+        *self == VERR_A::VALUE4
     }
 }
-#[doc = "Possible values of the field `SLEEP`"]
+#[doc = "Sleep Mode\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SLEEPR {
-    #[doc = "NVM not in sleep mode, and no sleep or wake up procedure in progress."]
+pub enum SLEEP_A {
+    #[doc = "0: NVM not in sleep mode, and no sleep or wake up procedure in progress."]
     VALUE1,
-    #[doc = "NVM in sleep mode, or busy due to a sleep or wake up procedure."]
+    #[doc = "1: NVM in sleep mode, or busy due to a sleep or wake up procedure."]
     VALUE2,
 }
-impl SLEEPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SLEEPR::VALUE1 => false,
-            SLEEPR::VALUE2 => true,
+impl From<SLEEP_A> for bool {
+    #[inline(always)]
+    fn from(variant: SLEEP_A) -> Self {
+        match variant {
+            SLEEP_A::VALUE1 => false,
+            SLEEP_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SLEEPR {
-        match value {
-            false => SLEEPR::VALUE1,
-            true => SLEEPR::VALUE2,
+}
+#[doc = "Reader of field `SLEEP`"]
+pub type SLEEP_R = crate::R<bool, SLEEP_A>;
+impl SLEEP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SLEEP_A {
+        match self.bits {
+            false => SLEEP_A::VALUE1,
+            true => SLEEP_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SLEEPR::VALUE1
+        *self == SLEEP_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SLEEPR::VALUE2
+        *self == SLEEP_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `BUSY`"]
+#[doc = "Busy\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BUSYR {
-    #[doc = "The NVM is not busy. Memory reads from the cell array and register write accesses are possible."]
+pub enum BUSY_A {
+    #[doc = "0: The NVM is not busy. Memory reads from the cell array and register write accesses are possible."]
     VALUE1,
-    #[doc = "The NVM is busy. Memory reads and register write accesses are not possible."]
+    #[doc = "1: The NVM is busy. Memory reads and register write accesses are not possible."]
     VALUE2,
 }
-impl BUSYR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BUSYR::VALUE1 => false,
-            BUSYR::VALUE2 => true,
+impl From<BUSY_A> for bool {
+    #[inline(always)]
+    fn from(variant: BUSY_A) -> Self {
+        match variant {
+            BUSY_A::VALUE1 => false,
+            BUSY_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BUSYR {
-        match value {
-            false => BUSYR::VALUE1,
-            true => BUSYR::VALUE2,
+}
+#[doc = "Reader of field `BUSY`"]
+pub type BUSY_R = crate::R<bool, BUSY_A>;
+impl BUSY_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BUSY_A {
+        match self.bits {
+            false => BUSY_A::VALUE1,
+            true => BUSY_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == BUSYR::VALUE1
+        *self == BUSY_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == BUSYR::VALUE2
+        *self == BUSY_A::VALUE2
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
     #[doc = "Bit 6 - Write Protocol Error"]
-    #[inline]
-    pub fn wrperr(&self) -> WRPERRR {
-        WRPERRR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn wrperr(&self) -> WRPERR_R {
+        WRPERR_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 5 - ECC2 Read"]
-    #[inline]
-    pub fn ecc2read(&self) -> ECC2READR {
-        ECC2READR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn ecc2read(&self) -> ECC2READ_R {
+        ECC2READ_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 4 - ECC1 Read"]
-    #[inline]
-    pub fn ecc1read(&self) -> ECC1READR {
-        ECC1READR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn ecc1read(&self) -> ECC1READ_R {
+        ECC1READ_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bits 2:3 - Verify Error"]
-    #[inline]
-    pub fn verr(&self) -> VERRR {
-        VERRR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u16) as u8
-        })
+    #[inline(always)]
+    pub fn verr(&self) -> VERR_R {
+        VERR_R::new(((self.bits >> 2) & 0x03) as u8)
     }
     #[doc = "Bit 1 - Sleep Mode"]
-    #[inline]
-    pub fn sleep(&self) -> SLEEPR {
-        SLEEPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn sleep(&self) -> SLEEP_R {
+        SLEEP_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 0 - Busy"]
-    #[inline]
-    pub fn busy(&self) -> BUSYR {
-        BUSYR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn busy(&self) -> BUSY_R {
+        BUSY_R::new((self.bits & 0x01) != 0)
     }
 }

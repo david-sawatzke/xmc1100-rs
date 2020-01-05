@@ -1,242 +1,146 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::GLOBICLASS {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register GLOBICLASS[%s]"]
+pub type R = crate::R<u32, super::GLOBICLASS>;
+#[doc = "Writer for register GLOBICLASS[%s]"]
+pub type W = crate::W<u32, super::GLOBICLASS>;
+#[doc = "Register GLOBICLASS[%s] `reset()`'s with value 0"]
+impl crate::ResetValue for super::GLOBICLASS {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = r" Value of the field"]
-pub struct STCSR {
-    bits: u8,
-}
-impl STCSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `CMS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CMSR {
-    #[doc = "12-bit conversion"]
-    VALUE1,
-    #[doc = "10-bit conversion"]
-    VALUE2,
-    #[doc = "8-bit conversion"]
-    VALUE3,
-    #[doc = "10-bit fast compare mode"]
-    VALUE6,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl CMSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            CMSR::VALUE1 => 0,
-            CMSR::VALUE2 => 1,
-            CMSR::VALUE3 => 2,
-            CMSR::VALUE6 => 5,
-            CMSR::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CMSR {
-        match value {
-            0 => CMSR::VALUE1,
-            1 => CMSR::VALUE2,
-            2 => CMSR::VALUE3,
-            5 => CMSR::VALUE6,
-            i => CMSR::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == CMSR::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == CMSR::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == CMSR::VALUE3
-    }
-    #[doc = "Checks if the value of the field is `VALUE6`"]
-    #[inline]
-    pub fn is_value6(&self) -> bool {
-        *self == CMSR::VALUE6
-    }
-}
-#[doc = r" Proxy"]
-pub struct _STCSW<'a> {
+#[doc = "Reader of field `STCS`"]
+pub type STCS_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `STCS`"]
+pub struct STCS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STCSW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+impl<'a> STCS_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x1f) | ((value as u32) & 0x1f);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `CMS`"]
-pub enum CMSW {
-    #[doc = "12-bit conversion"]
+#[doc = "Conversion Mode for Standard Conversions\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum CMS_A {
+    #[doc = "0: 12-bit conversion"]
     VALUE1,
-    #[doc = "10-bit conversion"]
+    #[doc = "1: 10-bit conversion"]
     VALUE2,
-    #[doc = "8-bit conversion"]
+    #[doc = "2: 8-bit conversion"]
     VALUE3,
-    #[doc = "10-bit fast compare mode"]
+    #[doc = "5: 10-bit fast compare mode"]
     VALUE6,
 }
-impl CMSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CMSW::VALUE1 => 0,
-            CMSW::VALUE2 => 1,
-            CMSW::VALUE3 => 2,
-            CMSW::VALUE6 => 5,
+impl From<CMS_A> for u8 {
+    #[inline(always)]
+    fn from(variant: CMS_A) -> Self {
+        match variant {
+            CMS_A::VALUE1 => 0,
+            CMS_A::VALUE2 => 1,
+            CMS_A::VALUE3 => 2,
+            CMS_A::VALUE6 => 5,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _CMSW<'a> {
+#[doc = "Reader of field `CMS`"]
+pub type CMS_R = crate::R<u8, CMS_A>;
+impl CMS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, CMS_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CMS_A::VALUE1),
+            1 => Val(CMS_A::VALUE2),
+            2 => Val(CMS_A::VALUE3),
+            5 => Val(CMS_A::VALUE6),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == CMS_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == CMS_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == CMS_A::VALUE3
+    }
+    #[doc = "Checks if the value of the field is `VALUE6`"]
+    #[inline(always)]
+    pub fn is_value6(&self) -> bool {
+        *self == CMS_A::VALUE6
+    }
+}
+#[doc = "Write proxy for field `CMS`"]
+pub struct CMS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CMSW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> CMS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CMS_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "12-bit conversion"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(CMSW::VALUE1)
+        self.variant(CMS_A::VALUE1)
     }
     #[doc = "10-bit conversion"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(CMSW::VALUE2)
+        self.variant(CMS_A::VALUE2)
     }
     #[doc = "8-bit conversion"]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(CMSW::VALUE3)
+        self.variant(CMS_A::VALUE3)
     }
     #[doc = "10-bit fast compare mode"]
-    #[inline]
+    #[inline(always)]
     pub fn value6(self) -> &'a mut W {
-        self.variant(CMSW::VALUE6)
+        self.variant(CMS_A::VALUE6)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 8)) | (((value as u32) & 0x07) << 8);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:4 - Sample Time Control for Standard Conversions"]
-    #[inline]
-    pub fn stcs(&self) -> STCSR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        STCSR { bits }
+    #[inline(always)]
+    pub fn stcs(&self) -> STCS_R {
+        STCS_R::new((self.bits & 0x1f) as u8)
     }
     #[doc = "Bits 8:10 - Conversion Mode for Standard Conversions"]
-    #[inline]
-    pub fn cms(&self) -> CMSR {
-        CMSR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn cms(&self) -> CMS_R {
+        CMS_R::new(((self.bits >> 8) & 0x07) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:4 - Sample Time Control for Standard Conversions"]
-    #[inline]
-    pub fn stcs(&mut self) -> _STCSW {
-        _STCSW { w: self }
+    #[inline(always)]
+    pub fn stcs(&mut self) -> STCS_W {
+        STCS_W { w: self }
     }
     #[doc = "Bits 8:10 - Conversion Mode for Standard Conversions"]
-    #[inline]
-    pub fn cms(&mut self) -> _CMSW {
-        _CMSW { w: self }
+    #[inline(always)]
+    pub fn cms(&mut self) -> CMS_W {
+        CMS_W { w: self }
     }
 }

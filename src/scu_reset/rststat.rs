@@ -1,97 +1,55 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::RSTSTAT {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RSTSTATR {
-    bits: u16,
-}
-impl RSTSTATR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
-#[doc = "Possible values of the field `LCKEN`"]
+#[doc = "Reader of register RSTSTAT"]
+pub type R = crate::R<u32, super::RSTSTAT>;
+#[doc = "Reader of field `RSTSTAT`"]
+pub type RSTSTAT_R = crate::R<u16, u16>;
+#[doc = "Enable Lockup Status\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LCKENR {
-    #[doc = "Reset by Lockup disabled"]
+pub enum LCKEN_A {
+    #[doc = "0: Reset by Lockup disabled"]
     VALUE1,
-    #[doc = "Reset by Lockup enabled"]
+    #[doc = "1: Reset by Lockup enabled"]
     VALUE2,
 }
-impl LCKENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            LCKENR::VALUE1 => false,
-            LCKENR::VALUE2 => true,
+impl From<LCKEN_A> for bool {
+    #[inline(always)]
+    fn from(variant: LCKEN_A) -> Self {
+        match variant {
+            LCKEN_A::VALUE1 => false,
+            LCKEN_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> LCKENR {
-        match value {
-            false => LCKENR::VALUE1,
-            true => LCKENR::VALUE2,
+}
+#[doc = "Reader of field `LCKEN`"]
+pub type LCKEN_R = crate::R<bool, LCKEN_A>;
+impl LCKEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LCKEN_A {
+        match self.bits {
+            false => LCKEN_A::VALUE1,
+            true => LCKEN_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == LCKENR::VALUE1
+        *self == LCKEN_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == LCKENR::VALUE2
+        *self == LCKEN_A::VALUE2
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:9 - Reset Status Information"]
-    #[inline]
-    pub fn rststat(&self) -> RSTSTATR {
-        let bits = {
-            const MASK: u16 = 1023;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        RSTSTATR { bits }
+    #[inline(always)]
+    pub fn rststat(&self) -> RSTSTAT_R {
+        RSTSTAT_R::new((self.bits & 0x03ff) as u16)
     }
     #[doc = "Bit 10 - Enable Lockup Status"]
-    #[inline]
-    pub fn lcken(&self) -> LCKENR {
-        LCKENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn lcken(&self) -> LCKEN_R {
+        LCKEN_R::new(((self.bits >> 10) & 0x01) != 0)
     }
 }

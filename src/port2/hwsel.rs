@@ -1,1504 +1,1120 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::HWSEL {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register HWSEL"]
+pub type R = crate::R<u32, super::HWSEL>;
+#[doc = "Writer for register HWSEL"]
+pub type W = crate::W<u32, super::HWSEL>;
+#[doc = "Register HWSEL `reset()`'s with value 0"]
+impl crate::ResetValue for super::HWSEL {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `HW0`"]
+#[doc = "Port 2 Pin Hardware Select Bit 0\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW0R {
-    #[doc = "Software control only."]
+pub enum HW0_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl HW0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW0R::VALUE1 => 0,
-            HW0R::VALUE2 => 1,
-            HW0R::VALUE3 => 2,
-            HW0R::_Reserved(bits) => bits,
+impl From<HW0_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW0_A) -> Self {
+        match variant {
+            HW0_A::VALUE1 => 0,
+            HW0_A::VALUE2 => 1,
+            HW0_A::VALUE3 => 2,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW0R {
-        match value {
-            0 => HW0R::VALUE1,
-            1 => HW0R::VALUE2,
-            2 => HW0R::VALUE3,
-            i => HW0R::_Reserved(i),
+}
+#[doc = "Reader of field `HW0`"]
+pub type HW0_R = crate::R<u8, HW0_A>;
+impl HW0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW0_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW0_A::VALUE1),
+            1 => Val(HW0_A::VALUE2),
+            2 => Val(HW0_A::VALUE3),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == HW0R::VALUE1
+        *self == HW0_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == HW0R::VALUE2
+        *self == HW0_A::VALUE2
     }
     #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value3(&self) -> bool {
-        *self == HW0R::VALUE3
+        *self == HW0_A::VALUE3
     }
 }
-#[doc = "Possible values of the field `HW1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW1R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW1R::VALUE1 => 0,
-            HW1R::VALUE2 => 1,
-            HW1R::VALUE3 => 2,
-            HW1R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW1R {
-        match value {
-            0 => HW1R::VALUE1,
-            1 => HW1R::VALUE2,
-            2 => HW1R::VALUE3,
-            i => HW1R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW1R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW1R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW1R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW2R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW2R::VALUE1 => 0,
-            HW2R::VALUE2 => 1,
-            HW2R::VALUE3 => 2,
-            HW2R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW2R {
-        match value {
-            0 => HW2R::VALUE1,
-            1 => HW2R::VALUE2,
-            2 => HW2R::VALUE3,
-            i => HW2R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW2R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW2R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW2R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW3R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW3R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW3R::VALUE1 => 0,
-            HW3R::VALUE2 => 1,
-            HW3R::VALUE3 => 2,
-            HW3R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW3R {
-        match value {
-            0 => HW3R::VALUE1,
-            1 => HW3R::VALUE2,
-            2 => HW3R::VALUE3,
-            i => HW3R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW3R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW3R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW3R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW4`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW4R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW4R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW4R::VALUE1 => 0,
-            HW4R::VALUE2 => 1,
-            HW4R::VALUE3 => 2,
-            HW4R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW4R {
-        match value {
-            0 => HW4R::VALUE1,
-            1 => HW4R::VALUE2,
-            2 => HW4R::VALUE3,
-            i => HW4R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW4R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW4R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW4R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW5R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW5R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW5R::VALUE1 => 0,
-            HW5R::VALUE2 => 1,
-            HW5R::VALUE3 => 2,
-            HW5R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW5R {
-        match value {
-            0 => HW5R::VALUE1,
-            1 => HW5R::VALUE2,
-            2 => HW5R::VALUE3,
-            i => HW5R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW5R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW5R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW5R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW6`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW6R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW6R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW6R::VALUE1 => 0,
-            HW6R::VALUE2 => 1,
-            HW6R::VALUE3 => 2,
-            HW6R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW6R {
-        match value {
-            0 => HW6R::VALUE1,
-            1 => HW6R::VALUE2,
-            2 => HW6R::VALUE3,
-            i => HW6R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW6R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW6R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW6R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW7`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW7R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW7R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW7R::VALUE1 => 0,
-            HW7R::VALUE2 => 1,
-            HW7R::VALUE3 => 2,
-            HW7R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW7R {
-        match value {
-            0 => HW7R::VALUE1,
-            1 => HW7R::VALUE2,
-            2 => HW7R::VALUE3,
-            i => HW7R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW7R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW7R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW7R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW8`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW8R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW8R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW8R::VALUE1 => 0,
-            HW8R::VALUE2 => 1,
-            HW8R::VALUE3 => 2,
-            HW8R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW8R {
-        match value {
-            0 => HW8R::VALUE1,
-            1 => HW8R::VALUE2,
-            2 => HW8R::VALUE3,
-            i => HW8R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW8R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW8R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW8R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW9`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW9R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW9R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW9R::VALUE1 => 0,
-            HW9R::VALUE2 => 1,
-            HW9R::VALUE3 => 2,
-            HW9R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW9R {
-        match value {
-            0 => HW9R::VALUE1,
-            1 => HW9R::VALUE2,
-            2 => HW9R::VALUE3,
-            i => HW9R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW9R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW9R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW9R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW10`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW10R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW10R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW10R::VALUE1 => 0,
-            HW10R::VALUE2 => 1,
-            HW10R::VALUE3 => 2,
-            HW10R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW10R {
-        match value {
-            0 => HW10R::VALUE1,
-            1 => HW10R::VALUE2,
-            2 => HW10R::VALUE3,
-            i => HW10R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW10R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW10R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW10R::VALUE3
-    }
-}
-#[doc = "Possible values of the field `HW11`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum HW11R {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl HW11R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            HW11R::VALUE1 => 0,
-            HW11R::VALUE2 => 1,
-            HW11R::VALUE3 => 2,
-            HW11R::_Reserved(bits) => bits,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> HW11R {
-        match value {
-            0 => HW11R::VALUE1,
-            1 => HW11R::VALUE2,
-            2 => HW11R::VALUE3,
-            i => HW11R::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == HW11R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == HW11R::VALUE2
-    }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == HW11R::VALUE3
-    }
-}
-#[doc = "Values that can be written to the field `HW0`"]
-pub enum HW0W {
-    #[doc = "Software control only."]
-    VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
-    VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
-    VALUE3,
-}
-impl HW0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW0W::VALUE1 => 0,
-            HW0W::VALUE2 => 1,
-            HW0W::VALUE3 => 2,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _HW0W<'a> {
+#[doc = "Write proxy for field `HW0`"]
+pub struct HW0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW0W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW0W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW0_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW0_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW0W::VALUE1)
+        self.variant(HW0_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW0W::VALUE2)
+        self.variant(HW0_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW0W::VALUE3)
+        self.variant(HW0_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW1`"]
-pub enum HW1W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 1\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW1_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW1W::VALUE1 => 0,
-            HW1W::VALUE2 => 1,
-            HW1W::VALUE3 => 2,
+impl From<HW1_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW1_A) -> Self {
+        match variant {
+            HW1_A::VALUE1 => 0,
+            HW1_A::VALUE2 => 1,
+            HW1_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW1W<'a> {
+#[doc = "Reader of field `HW1`"]
+pub type HW1_R = crate::R<u8, HW1_A>;
+impl HW1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW1_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW1_A::VALUE1),
+            1 => Val(HW1_A::VALUE2),
+            2 => Val(HW1_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW1_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW1_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW1_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW1`"]
+pub struct HW1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW1W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW1W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW1_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW1_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW1W::VALUE1)
+        self.variant(HW1_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW1W::VALUE2)
+        self.variant(HW1_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW1W::VALUE3)
+        self.variant(HW1_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 2)) | (((value as u32) & 0x03) << 2);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW2`"]
-pub enum HW2W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 2\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW2_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW2W::VALUE1 => 0,
-            HW2W::VALUE2 => 1,
-            HW2W::VALUE3 => 2,
+impl From<HW2_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW2_A) -> Self {
+        match variant {
+            HW2_A::VALUE1 => 0,
+            HW2_A::VALUE2 => 1,
+            HW2_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW2W<'a> {
+#[doc = "Reader of field `HW2`"]
+pub type HW2_R = crate::R<u8, HW2_A>;
+impl HW2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW2_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW2_A::VALUE1),
+            1 => Val(HW2_A::VALUE2),
+            2 => Val(HW2_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW2_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW2_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW2_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW2`"]
+pub struct HW2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW2W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW2W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW2_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW2_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW2W::VALUE1)
+        self.variant(HW2_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW2W::VALUE2)
+        self.variant(HW2_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW2W::VALUE3)
+        self.variant(HW2_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u32) & 0x03) << 4);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW3`"]
-pub enum HW3W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 3\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW3_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW3W::VALUE1 => 0,
-            HW3W::VALUE2 => 1,
-            HW3W::VALUE3 => 2,
+impl From<HW3_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW3_A) -> Self {
+        match variant {
+            HW3_A::VALUE1 => 0,
+            HW3_A::VALUE2 => 1,
+            HW3_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW3W<'a> {
+#[doc = "Reader of field `HW3`"]
+pub type HW3_R = crate::R<u8, HW3_A>;
+impl HW3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW3_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW3_A::VALUE1),
+            1 => Val(HW3_A::VALUE2),
+            2 => Val(HW3_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW3_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW3_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW3_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW3`"]
+pub struct HW3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW3W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW3W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW3_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW3_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW3W::VALUE1)
+        self.variant(HW3_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW3W::VALUE2)
+        self.variant(HW3_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW3W::VALUE3)
+        self.variant(HW3_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 6)) | (((value as u32) & 0x03) << 6);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW4`"]
-pub enum HW4W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 4\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW4_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW4W::VALUE1 => 0,
-            HW4W::VALUE2 => 1,
-            HW4W::VALUE3 => 2,
+impl From<HW4_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW4_A) -> Self {
+        match variant {
+            HW4_A::VALUE1 => 0,
+            HW4_A::VALUE2 => 1,
+            HW4_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW4W<'a> {
+#[doc = "Reader of field `HW4`"]
+pub type HW4_R = crate::R<u8, HW4_A>;
+impl HW4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW4_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW4_A::VALUE1),
+            1 => Val(HW4_A::VALUE2),
+            2 => Val(HW4_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW4_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW4_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW4_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW4`"]
+pub struct HW4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW4W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW4W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW4_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW4_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW4W::VALUE1)
+        self.variant(HW4_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW4W::VALUE2)
+        self.variant(HW4_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW4W::VALUE3)
+        self.variant(HW4_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 8)) | (((value as u32) & 0x03) << 8);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW5`"]
-pub enum HW5W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 5\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW5_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW5W::VALUE1 => 0,
-            HW5W::VALUE2 => 1,
-            HW5W::VALUE3 => 2,
+impl From<HW5_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW5_A) -> Self {
+        match variant {
+            HW5_A::VALUE1 => 0,
+            HW5_A::VALUE2 => 1,
+            HW5_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW5W<'a> {
+#[doc = "Reader of field `HW5`"]
+pub type HW5_R = crate::R<u8, HW5_A>;
+impl HW5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW5_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW5_A::VALUE1),
+            1 => Val(HW5_A::VALUE2),
+            2 => Val(HW5_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW5_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW5_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW5_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW5`"]
+pub struct HW5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW5W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW5W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW5_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW5_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW5W::VALUE1)
+        self.variant(HW5_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW5W::VALUE2)
+        self.variant(HW5_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW5W::VALUE3)
+        self.variant(HW5_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 10)) | (((value as u32) & 0x03) << 10);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW6`"]
-pub enum HW6W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 6\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW6_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW6W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW6W::VALUE1 => 0,
-            HW6W::VALUE2 => 1,
-            HW6W::VALUE3 => 2,
+impl From<HW6_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW6_A) -> Self {
+        match variant {
+            HW6_A::VALUE1 => 0,
+            HW6_A::VALUE2 => 1,
+            HW6_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW6W<'a> {
+#[doc = "Reader of field `HW6`"]
+pub type HW6_R = crate::R<u8, HW6_A>;
+impl HW6_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW6_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW6_A::VALUE1),
+            1 => Val(HW6_A::VALUE2),
+            2 => Val(HW6_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW6_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW6_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW6_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW6`"]
+pub struct HW6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW6W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW6W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW6_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW6_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW6W::VALUE1)
+        self.variant(HW6_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW6W::VALUE2)
+        self.variant(HW6_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW6W::VALUE3)
+        self.variant(HW6_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 12)) | (((value as u32) & 0x03) << 12);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW7`"]
-pub enum HW7W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 7\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW7_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW7W::VALUE1 => 0,
-            HW7W::VALUE2 => 1,
-            HW7W::VALUE3 => 2,
+impl From<HW7_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW7_A) -> Self {
+        match variant {
+            HW7_A::VALUE1 => 0,
+            HW7_A::VALUE2 => 1,
+            HW7_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW7W<'a> {
+#[doc = "Reader of field `HW7`"]
+pub type HW7_R = crate::R<u8, HW7_A>;
+impl HW7_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW7_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW7_A::VALUE1),
+            1 => Val(HW7_A::VALUE2),
+            2 => Val(HW7_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW7_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW7_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW7_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW7`"]
+pub struct HW7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW7W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW7W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW7_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW7_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW7W::VALUE1)
+        self.variant(HW7_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW7W::VALUE2)
+        self.variant(HW7_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW7W::VALUE3)
+        self.variant(HW7_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 14;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 14)) | (((value as u32) & 0x03) << 14);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW8`"]
-pub enum HW8W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 8\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW8_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW8W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW8W::VALUE1 => 0,
-            HW8W::VALUE2 => 1,
-            HW8W::VALUE3 => 2,
+impl From<HW8_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW8_A) -> Self {
+        match variant {
+            HW8_A::VALUE1 => 0,
+            HW8_A::VALUE2 => 1,
+            HW8_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW8W<'a> {
+#[doc = "Reader of field `HW8`"]
+pub type HW8_R = crate::R<u8, HW8_A>;
+impl HW8_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW8_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW8_A::VALUE1),
+            1 => Val(HW8_A::VALUE2),
+            2 => Val(HW8_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW8_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW8_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW8_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW8`"]
+pub struct HW8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW8W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW8W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW8_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW8_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW8W::VALUE1)
+        self.variant(HW8_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW8W::VALUE2)
+        self.variant(HW8_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW8W::VALUE3)
+        self.variant(HW8_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW9`"]
-pub enum HW9W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 9\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW9_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW9W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW9W::VALUE1 => 0,
-            HW9W::VALUE2 => 1,
-            HW9W::VALUE3 => 2,
+impl From<HW9_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW9_A) -> Self {
+        match variant {
+            HW9_A::VALUE1 => 0,
+            HW9_A::VALUE2 => 1,
+            HW9_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW9W<'a> {
+#[doc = "Reader of field `HW9`"]
+pub type HW9_R = crate::R<u8, HW9_A>;
+impl HW9_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW9_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW9_A::VALUE1),
+            1 => Val(HW9_A::VALUE2),
+            2 => Val(HW9_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW9_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW9_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW9_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW9`"]
+pub struct HW9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW9W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW9W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW9_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW9_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW9W::VALUE1)
+        self.variant(HW9_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW9W::VALUE2)
+        self.variant(HW9_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW9W::VALUE3)
+        self.variant(HW9_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 18)) | (((value as u32) & 0x03) << 18);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW10`"]
-pub enum HW10W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 10\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW10_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW10W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW10W::VALUE1 => 0,
-            HW10W::VALUE2 => 1,
-            HW10W::VALUE3 => 2,
+impl From<HW10_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW10_A) -> Self {
+        match variant {
+            HW10_A::VALUE1 => 0,
+            HW10_A::VALUE2 => 1,
+            HW10_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW10W<'a> {
+#[doc = "Reader of field `HW10`"]
+pub type HW10_R = crate::R<u8, HW10_A>;
+impl HW10_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW10_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW10_A::VALUE1),
+            1 => Val(HW10_A::VALUE2),
+            2 => Val(HW10_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW10_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW10_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW10_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW10`"]
+pub struct HW10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW10W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW10W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW10_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW10_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW10W::VALUE1)
+        self.variant(HW10_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW10W::VALUE2)
+        self.variant(HW10_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW10W::VALUE3)
+        self.variant(HW10_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 20)) | (((value as u32) & 0x03) << 20);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `HW11`"]
-pub enum HW11W {
-    #[doc = "Software control only."]
+#[doc = "Port 2 Pin Hardware Select Bit 11\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum HW11_A {
+    #[doc = "0: Software control only."]
     VALUE1,
-    #[doc = "HW0 control path can override the software configuration."]
+    #[doc = "1: HW0 control path can override the software configuration."]
     VALUE2,
-    #[doc = "HW1 control path can override the software configuration."]
+    #[doc = "2: HW1 control path can override the software configuration."]
     VALUE3,
 }
-impl HW11W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            HW11W::VALUE1 => 0,
-            HW11W::VALUE2 => 1,
-            HW11W::VALUE3 => 2,
+impl From<HW11_A> for u8 {
+    #[inline(always)]
+    fn from(variant: HW11_A) -> Self {
+        match variant {
+            HW11_A::VALUE1 => 0,
+            HW11_A::VALUE2 => 1,
+            HW11_A::VALUE3 => 2,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _HW11W<'a> {
+#[doc = "Reader of field `HW11`"]
+pub type HW11_R = crate::R<u8, HW11_A>;
+impl HW11_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, HW11_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(HW11_A::VALUE1),
+            1 => Val(HW11_A::VALUE2),
+            2 => Val(HW11_A::VALUE3),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == HW11_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == HW11_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == HW11_A::VALUE3
+    }
+}
+#[doc = "Write proxy for field `HW11`"]
+pub struct HW11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HW11W<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: HW11W) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> HW11_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: HW11_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Software control only."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(HW11W::VALUE1)
+        self.variant(HW11_A::VALUE1)
     }
     #[doc = "HW0 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(HW11W::VALUE2)
+        self.variant(HW11_A::VALUE2)
     }
     #[doc = "HW1 control path can override the software configuration."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(HW11W::VALUE3)
+        self.variant(HW11_A::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 22;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 22)) | (((value as u32) & 0x03) << 22);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Port 2 Pin Hardware Select Bit 0"]
-    #[inline]
-    pub fn hw0(&self) -> HW0R {
-        HW0R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw0(&self) -> HW0_R {
+        HW0_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 2:3 - Port 2 Pin Hardware Select Bit 1"]
-    #[inline]
-    pub fn hw1(&self) -> HW1R {
-        HW1R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw1(&self) -> HW1_R {
+        HW1_R::new(((self.bits >> 2) & 0x03) as u8)
     }
     #[doc = "Bits 4:5 - Port 2 Pin Hardware Select Bit 2"]
-    #[inline]
-    pub fn hw2(&self) -> HW2R {
-        HW2R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw2(&self) -> HW2_R {
+        HW2_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bits 6:7 - Port 2 Pin Hardware Select Bit 3"]
-    #[inline]
-    pub fn hw3(&self) -> HW3R {
-        HW3R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw3(&self) -> HW3_R {
+        HW3_R::new(((self.bits >> 6) & 0x03) as u8)
     }
     #[doc = "Bits 8:9 - Port 2 Pin Hardware Select Bit 4"]
-    #[inline]
-    pub fn hw4(&self) -> HW4R {
-        HW4R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw4(&self) -> HW4_R {
+        HW4_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bits 10:11 - Port 2 Pin Hardware Select Bit 5"]
-    #[inline]
-    pub fn hw5(&self) -> HW5R {
-        HW5R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw5(&self) -> HW5_R {
+        HW5_R::new(((self.bits >> 10) & 0x03) as u8)
     }
     #[doc = "Bits 12:13 - Port 2 Pin Hardware Select Bit 6"]
-    #[inline]
-    pub fn hw6(&self) -> HW6R {
-        HW6R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw6(&self) -> HW6_R {
+        HW6_R::new(((self.bits >> 12) & 0x03) as u8)
     }
     #[doc = "Bits 14:15 - Port 2 Pin Hardware Select Bit 7"]
-    #[inline]
-    pub fn hw7(&self) -> HW7R {
-        HW7R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw7(&self) -> HW7_R {
+        HW7_R::new(((self.bits >> 14) & 0x03) as u8)
     }
     #[doc = "Bits 16:17 - Port 2 Pin Hardware Select Bit 8"]
-    #[inline]
-    pub fn hw8(&self) -> HW8R {
-        HW8R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw8(&self) -> HW8_R {
+        HW8_R::new(((self.bits >> 16) & 0x03) as u8)
     }
     #[doc = "Bits 18:19 - Port 2 Pin Hardware Select Bit 9"]
-    #[inline]
-    pub fn hw9(&self) -> HW9R {
-        HW9R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw9(&self) -> HW9_R {
+        HW9_R::new(((self.bits >> 18) & 0x03) as u8)
     }
     #[doc = "Bits 20:21 - Port 2 Pin Hardware Select Bit 10"]
-    #[inline]
-    pub fn hw10(&self) -> HW10R {
-        HW10R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw10(&self) -> HW10_R {
+        HW10_R::new(((self.bits >> 20) & 0x03) as u8)
     }
     #[doc = "Bits 22:23 - Port 2 Pin Hardware Select Bit 11"]
-    #[inline]
-    pub fn hw11(&self) -> HW11R {
-        HW11R::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn hw11(&self) -> HW11_R {
+        HW11_R::new(((self.bits >> 22) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Port 2 Pin Hardware Select Bit 0"]
-    #[inline]
-    pub fn hw0(&mut self) -> _HW0W {
-        _HW0W { w: self }
+    #[inline(always)]
+    pub fn hw0(&mut self) -> HW0_W {
+        HW0_W { w: self }
     }
     #[doc = "Bits 2:3 - Port 2 Pin Hardware Select Bit 1"]
-    #[inline]
-    pub fn hw1(&mut self) -> _HW1W {
-        _HW1W { w: self }
+    #[inline(always)]
+    pub fn hw1(&mut self) -> HW1_W {
+        HW1_W { w: self }
     }
     #[doc = "Bits 4:5 - Port 2 Pin Hardware Select Bit 2"]
-    #[inline]
-    pub fn hw2(&mut self) -> _HW2W {
-        _HW2W { w: self }
+    #[inline(always)]
+    pub fn hw2(&mut self) -> HW2_W {
+        HW2_W { w: self }
     }
     #[doc = "Bits 6:7 - Port 2 Pin Hardware Select Bit 3"]
-    #[inline]
-    pub fn hw3(&mut self) -> _HW3W {
-        _HW3W { w: self }
+    #[inline(always)]
+    pub fn hw3(&mut self) -> HW3_W {
+        HW3_W { w: self }
     }
     #[doc = "Bits 8:9 - Port 2 Pin Hardware Select Bit 4"]
-    #[inline]
-    pub fn hw4(&mut self) -> _HW4W {
-        _HW4W { w: self }
+    #[inline(always)]
+    pub fn hw4(&mut self) -> HW4_W {
+        HW4_W { w: self }
     }
     #[doc = "Bits 10:11 - Port 2 Pin Hardware Select Bit 5"]
-    #[inline]
-    pub fn hw5(&mut self) -> _HW5W {
-        _HW5W { w: self }
+    #[inline(always)]
+    pub fn hw5(&mut self) -> HW5_W {
+        HW5_W { w: self }
     }
     #[doc = "Bits 12:13 - Port 2 Pin Hardware Select Bit 6"]
-    #[inline]
-    pub fn hw6(&mut self) -> _HW6W {
-        _HW6W { w: self }
+    #[inline(always)]
+    pub fn hw6(&mut self) -> HW6_W {
+        HW6_W { w: self }
     }
     #[doc = "Bits 14:15 - Port 2 Pin Hardware Select Bit 7"]
-    #[inline]
-    pub fn hw7(&mut self) -> _HW7W {
-        _HW7W { w: self }
+    #[inline(always)]
+    pub fn hw7(&mut self) -> HW7_W {
+        HW7_W { w: self }
     }
     #[doc = "Bits 16:17 - Port 2 Pin Hardware Select Bit 8"]
-    #[inline]
-    pub fn hw8(&mut self) -> _HW8W {
-        _HW8W { w: self }
+    #[inline(always)]
+    pub fn hw8(&mut self) -> HW8_W {
+        HW8_W { w: self }
     }
     #[doc = "Bits 18:19 - Port 2 Pin Hardware Select Bit 9"]
-    #[inline]
-    pub fn hw9(&mut self) -> _HW9W {
-        _HW9W { w: self }
+    #[inline(always)]
+    pub fn hw9(&mut self) -> HW9_W {
+        HW9_W { w: self }
     }
     #[doc = "Bits 20:21 - Port 2 Pin Hardware Select Bit 10"]
-    #[inline]
-    pub fn hw10(&mut self) -> _HW10W {
-        _HW10W { w: self }
+    #[inline(always)]
+    pub fn hw10(&mut self) -> HW10_W {
+        HW10_W { w: self }
     }
     #[doc = "Bits 22:23 - Port 2 Pin Hardware Select Bit 11"]
-    #[inline]
-    pub fn hw11(&mut self) -> _HW11W {
-        _HW11W { w: self }
+    #[inline(always)]
+    pub fn hw11(&mut self) -> HW11_W {
+        HW11_W { w: self }
     }
 }

@@ -1,826 +1,627 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SHSCFG {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+#[doc = "Reader of register SHSCFG"]
+pub type R = crate::R<u32, super::SHSCFG>;
+#[doc = "Writer for register SHSCFG"]
+pub type W = crate::W<u32, super::SHSCFG>;
+#[doc = "Register SHSCFG `reset()`'s with value 0x1000"]
+impl crate::ResetValue for super::SHSCFG {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x1000
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
+}
+#[doc = "Divider Factor for the SHS Clock\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum DIVS_A {
+    #[doc = "0: fSH = fCONV / 1"]
+    VALUE1,
+    #[doc = "1: fSH = fCONV / 2"]
+    VALUE2,
+    #[doc = "15: fSH = fCONV / 16"]
+    VALUE3,
+}
+impl From<DIVS_A> for u8 {
+    #[inline(always)]
+    fn from(variant: DIVS_A) -> Self {
+        match variant {
+            DIVS_A::VALUE1 => 0,
+            DIVS_A::VALUE2 => 1,
+            DIVS_A::VALUE3 => 15,
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+}
+#[doc = "Reader of field `DIVS`"]
+pub type DIVS_R = crate::R<u8, DIVS_A>;
+impl DIVS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, DIVS_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(DIVS_A::VALUE1),
+            1 => Val(DIVS_A::VALUE2),
+            15 => Val(DIVS_A::VALUE3),
+            i => Res(i),
+        }
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == DIVS_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == DIVS_A::VALUE2
+    }
+    #[doc = "Checks if the value of the field is `VALUE3`"]
+    #[inline(always)]
+    pub fn is_value3(&self) -> bool {
+        *self == DIVS_A::VALUE3
     }
 }
-#[doc = "Possible values of the field `DIVS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DIVSR {
+#[doc = "Write proxy for field `DIVS`"]
+pub struct DIVS_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> DIVS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: DIVS_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
     #[doc = "fSH = fCONV / 1"]
-    VALUE1,
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(DIVS_A::VALUE1)
+    }
     #[doc = "fSH = fCONV / 2"]
-    VALUE2,
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(DIVS_A::VALUE2)
+    }
     #[doc = "fSH = fCONV / 16"]
-    VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+    #[inline(always)]
+    pub fn value3(self) -> &'a mut W {
+        self.variant(DIVS_A::VALUE3)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x0f) | ((value as u32) & 0x0f);
+        self.w
+    }
 }
-impl DIVSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            DIVSR::VALUE1 => 0,
-            DIVSR::VALUE2 => 1,
-            DIVSR::VALUE3 => 15,
-            DIVSR::_Reserved(bits) => bits,
+#[doc = "Analog Reference Voltage Selection\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum AREF_A {
+    #[doc = "0: External reference, upper supply range"]
+    VALUE1,
+    #[doc = "2: Internal reference, upper supply range"]
+    VALUE3,
+    #[doc = "3: Internal reference, lower supply range"]
+    VALUE4,
+}
+impl From<AREF_A> for u8 {
+    #[inline(always)]
+    fn from(variant: AREF_A) -> Self {
+        match variant {
+            AREF_A::VALUE1 => 0,
+            AREF_A::VALUE3 => 2,
+            AREF_A::VALUE4 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> DIVSR {
-        match value {
-            0 => DIVSR::VALUE1,
-            1 => DIVSR::VALUE2,
-            15 => DIVSR::VALUE3,
-            i => DIVSR::_Reserved(i),
+}
+#[doc = "Reader of field `AREF`"]
+pub type AREF_R = crate::R<u8, AREF_A>;
+impl AREF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, AREF_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(AREF_A::VALUE1),
+            2 => Val(AREF_A::VALUE3),
+            3 => Val(AREF_A::VALUE4),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == DIVSR::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == DIVSR::VALUE2
+        *self == AREF_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value3(&self) -> bool {
-        *self == DIVSR::VALUE3
+        *self == AREF_A::VALUE3
+    }
+    #[doc = "Checks if the value of the field is `VALUE4`"]
+    #[inline(always)]
+    pub fn is_value4(&self) -> bool {
+        *self == AREF_A::VALUE4
     }
 }
-#[doc = "Possible values of the field `AREF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum AREFR {
+#[doc = "Write proxy for field `AREF`"]
+pub struct AREF_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> AREF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: AREF_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
     #[doc = "External reference, upper supply range"]
-    VALUE1,
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(AREF_A::VALUE1)
+    }
     #[doc = "Internal reference, upper supply range"]
-    VALUE3,
+    #[inline(always)]
+    pub fn value3(self) -> &'a mut W {
+        self.variant(AREF_A::VALUE3)
+    }
     #[doc = "Internal reference, lower supply range"]
-    VALUE4,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
+    #[inline(always)]
+    pub fn value4(self) -> &'a mut W {
+        self.variant(AREF_A::VALUE4)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 10)) | (((value as u32) & 0x03) << 10);
+        self.w
+    }
 }
-impl AREFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            AREFR::VALUE1 => 0,
-            AREFR::VALUE3 => 2,
-            AREFR::VALUE4 => 3,
-            AREFR::_Reserved(bits) => bits,
+#[doc = "Analog Converter Power Down Force\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ANOFF_A {
+    #[doc = "0: Converter is on"]
+    VALUE1,
+    #[doc = "1: Converter is permanently off"]
+    VALUE2,
+}
+impl From<ANOFF_A> for bool {
+    #[inline(always)]
+    fn from(variant: ANOFF_A) -> Self {
+        match variant {
+            ANOFF_A::VALUE1 => false,
+            ANOFF_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> AREFR {
-        match value {
-            0 => AREFR::VALUE1,
-            2 => AREFR::VALUE3,
-            3 => AREFR::VALUE4,
-            i => AREFR::_Reserved(i),
+}
+#[doc = "Reader of field `ANOFF`"]
+pub type ANOFF_R = crate::R<bool, ANOFF_A>;
+impl ANOFF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ANOFF_A {
+        match self.bits {
+            false => ANOFF_A::VALUE1,
+            true => ANOFF_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == AREFR::VALUE1
+        *self == ANOFF_A::VALUE1
     }
-    #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
-    pub fn is_value3(&self) -> bool {
-        *self == AREFR::VALUE3
-    }
-    #[doc = "Checks if the value of the field is `VALUE4`"]
-    #[inline]
-    pub fn is_value4(&self) -> bool {
-        *self == AREFR::VALUE4
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == ANOFF_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `ANOFF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ANOFFR {
+#[doc = "Write proxy for field `ANOFF`"]
+pub struct ANOFF_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ANOFF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ANOFF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
     #[doc = "Converter is on"]
-    VALUE1,
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(ANOFF_A::VALUE1)
+    }
     #[doc = "Converter is permanently off"]
-    VALUE2,
-}
-impl ANOFFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(ANOFF_A::VALUE2)
     }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
     }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ANOFFR::VALUE1 => false,
-            ANOFFR::VALUE2 => true,
-        }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ANOFFR {
-        match value {
-            false => ANOFFR::VALUE1,
-            true => ANOFFR::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == ANOFFR::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == ANOFFR::VALUE2
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w
     }
 }
-#[doc = "Possible values of the field `ANRDY`"]
+#[doc = "Analog Converter Ready\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ANRDYR {
-    #[doc = "Converter is in power-down mode"]
+pub enum ANRDY_A {
+    #[doc = "0: Converter is in power-down mode"]
     VALUE1,
-    #[doc = "Converter is operable"]
+    #[doc = "1: Converter is operable"]
     VALUE2,
 }
-impl ANRDYR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            ANRDYR::VALUE1 => false,
-            ANRDYR::VALUE2 => true,
+impl From<ANRDY_A> for bool {
+    #[inline(always)]
+    fn from(variant: ANRDY_A) -> Self {
+        match variant {
+            ANRDY_A::VALUE1 => false,
+            ANRDY_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> ANRDYR {
-        match value {
-            false => ANRDYR::VALUE1,
-            true => ANRDYR::VALUE2,
+}
+#[doc = "Reader of field `ANRDY`"]
+pub type ANRDY_R = crate::R<bool, ANRDY_A>;
+impl ANRDY_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ANRDY_A {
+        match self.bits {
+            false => ANRDY_A::VALUE1,
+            true => ANRDY_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == ANRDYR::VALUE1
+        *self == ANRDY_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == ANRDYR::VALUE2
+        *self == ANRDY_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `SP0`"]
+#[doc = "Write Control for SHS Configuration\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SP0R {
-    #[doc = "No sample pending"]
+pub enum SCWC_AW {
+    #[doc = "0: No write access to SHS configuration"]
     VALUE1,
-    #[doc = "S&H unit x has finished the sample phase"]
+    #[doc = "1: Bitfields ANOFF, AREF, DIVS can be written"]
     VALUE2,
 }
-impl SP0R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SP0R::VALUE1 => false,
-            SP0R::VALUE2 => true,
+impl From<SCWC_AW> for bool {
+    #[inline(always)]
+    fn from(variant: SCWC_AW) -> Self {
+        match variant {
+            SCWC_AW::VALUE1 => false,
+            SCWC_AW::VALUE2 => true,
         }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SP0R {
-        match value {
-            false => SP0R::VALUE1,
-            true => SP0R::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == SP0R::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == SP0R::VALUE2
     }
 }
-#[doc = "Possible values of the field `SP1`"]
+#[doc = "Write proxy for field `SCWC`"]
+pub struct SCWC_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> SCWC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SCWC_AW) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "No write access to SHS configuration"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(SCWC_AW::VALUE1)
+    }
+    #[doc = "Bitfields ANOFF, AREF, DIVS can be written"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(SCWC_AW::VALUE2)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w
+    }
+}
+#[doc = "Sample Pending on S&H Unit x\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SP1R {
-    #[doc = "No sample pending"]
+pub enum SP0_A {
+    #[doc = "0: No sample pending"]
     VALUE1,
-    #[doc = "S&H unit x has finished the sample phase"]
+    #[doc = "1: S&H unit x has finished the sample phase"]
     VALUE2,
 }
-impl SP1R {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SP1R::VALUE1 => false,
-            SP1R::VALUE2 => true,
+impl From<SP0_A> for bool {
+    #[inline(always)]
+    fn from(variant: SP0_A) -> Self {
+        match variant {
+            SP0_A::VALUE1 => false,
+            SP0_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SP1R {
-        match value {
-            false => SP1R::VALUE1,
-            true => SP1R::VALUE2,
+}
+#[doc = "Reader of field `SP0`"]
+pub type SP0_R = crate::R<bool, SP0_A>;
+impl SP0_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SP0_A {
+        match self.bits {
+            false => SP0_A::VALUE1,
+            true => SP0_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SP1R::VALUE1
+        *self == SP0_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SP1R::VALUE2
+        *self == SP0_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `TC`"]
+#[doc = "Sample Pending on S&H Unit x\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TCR {
+pub enum SP1_A {
+    #[doc = "0: No sample pending"]
+    VALUE1,
+    #[doc = "1: S&H unit x has finished the sample phase"]
+    VALUE2,
+}
+impl From<SP1_A> for bool {
+    #[inline(always)]
+    fn from(variant: SP1_A) -> Self {
+        match variant {
+            SP1_A::VALUE1 => false,
+            SP1_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `SP1`"]
+pub type SP1_R = crate::R<bool, SP1_A>;
+impl SP1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SP1_A {
+        match self.bits {
+            false => SP1_A::VALUE1,
+            true => SP1_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == SP1_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == SP1_A::VALUE2
+    }
+}
+#[doc = "Test Control\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TC_A {
+    #[doc = "11: Internal test functions enabled"]
+    VALUE1,
+}
+impl From<TC_A> for u8 {
+    #[inline(always)]
+    fn from(variant: TC_A) -> Self {
+        match variant {
+            TC_A::VALUE1 => 11,
+        }
+    }
+}
+#[doc = "Reader of field `TC`"]
+pub type TC_R = crate::R<u8, TC_A>;
+impl TC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TC_A> {
+        use crate::Variant::*;
+        match self.bits {
+            11 => Val(TC_A::VALUE1),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == TC_A::VALUE1
+    }
+}
+#[doc = "Write proxy for field `TC`"]
+pub struct TC_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> TC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: TC_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
     #[doc = "Internal test functions enabled"]
-    VALUE1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
-}
-impl TCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            TCR::VALUE1 => 11,
-            TCR::_Reserved(bits) => bits,
-        }
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(TC_A::VALUE1)
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> TCR {
-        match value {
-            11 => TCR::VALUE1,
-            i => TCR::_Reserved(i),
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == TCR::VALUE1
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x0f << 24)) | (((value as u32) & 0x0f) << 24);
+        self.w
     }
 }
-#[doc = "Possible values of the field `STATE`"]
+#[doc = "Current State of Sequencer\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STATER {
-    #[doc = "Idle"]
+pub enum STATE_A {
+    #[doc = "0: Idle"]
     VALUE1,
-    #[doc = "Offset calibration active"]
+    #[doc = "1: Offset calibration active"]
     VALUE2,
-    #[doc = "Gain calibration active"]
+    #[doc = "2: Gain calibration active"]
     VALUE3,
-    #[doc = "Startup calibration active"]
+    #[doc = "3: Startup calibration active"]
     VALUE4,
-    #[doc = "Stepper process active for S&H unit 0"]
+    #[doc = "8: Stepper process active for S&H unit 0"]
     VALUE5,
-    #[doc = "Stepper process active for S&H unit 1"]
+    #[doc = "9: Stepper process active for S&H unit 1"]
     VALUE6,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl STATER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            STATER::VALUE1 => 0,
-            STATER::VALUE2 => 1,
-            STATER::VALUE3 => 2,
-            STATER::VALUE4 => 3,
-            STATER::VALUE5 => 8,
-            STATER::VALUE6 => 9,
-            STATER::_Reserved(bits) => bits,
+impl From<STATE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: STATE_A) -> Self {
+        match variant {
+            STATE_A::VALUE1 => 0,
+            STATE_A::VALUE2 => 1,
+            STATE_A::VALUE3 => 2,
+            STATE_A::VALUE4 => 3,
+            STATE_A::VALUE5 => 8,
+            STATE_A::VALUE6 => 9,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> STATER {
-        match value {
-            0 => STATER::VALUE1,
-            1 => STATER::VALUE2,
-            2 => STATER::VALUE3,
-            3 => STATER::VALUE4,
-            8 => STATER::VALUE5,
-            9 => STATER::VALUE6,
-            i => STATER::_Reserved(i),
+}
+#[doc = "Reader of field `STATE`"]
+pub type STATE_R = crate::R<u8, STATE_A>;
+impl STATE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, STATE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(STATE_A::VALUE1),
+            1 => Val(STATE_A::VALUE2),
+            2 => Val(STATE_A::VALUE3),
+            3 => Val(STATE_A::VALUE4),
+            8 => Val(STATE_A::VALUE5),
+            9 => Val(STATE_A::VALUE6),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == STATER::VALUE1
+        *self == STATE_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == STATER::VALUE2
+        *self == STATE_A::VALUE2
     }
     #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value3(&self) -> bool {
-        *self == STATER::VALUE3
+        *self == STATE_A::VALUE3
     }
     #[doc = "Checks if the value of the field is `VALUE4`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value4(&self) -> bool {
-        *self == STATER::VALUE4
+        *self == STATE_A::VALUE4
     }
     #[doc = "Checks if the value of the field is `VALUE5`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value5(&self) -> bool {
-        *self == STATER::VALUE5
+        *self == STATE_A::VALUE5
     }
     #[doc = "Checks if the value of the field is `VALUE6`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value6(&self) -> bool {
-        *self == STATER::VALUE6
-    }
-}
-#[doc = "Values that can be written to the field `DIVS`"]
-pub enum DIVSW {
-    #[doc = "fSH = fCONV / 1"]
-    VALUE1,
-    #[doc = "fSH = fCONV / 2"]
-    VALUE2,
-    #[doc = "fSH = fCONV / 16"]
-    VALUE3,
-}
-impl DIVSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            DIVSW::VALUE1 => 0,
-            DIVSW::VALUE2 => 1,
-            DIVSW::VALUE3 => 15,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _DIVSW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _DIVSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: DIVSW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "fSH = fCONV / 1"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(DIVSW::VALUE1)
-    }
-    #[doc = "fSH = fCONV / 2"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(DIVSW::VALUE2)
-    }
-    #[doc = "fSH = fCONV / 16"]
-    #[inline]
-    pub fn value3(self) -> &'a mut W {
-        self.variant(DIVSW::VALUE3)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `AREF`"]
-pub enum AREFW {
-    #[doc = "External reference, upper supply range"]
-    VALUE1,
-    #[doc = "Internal reference, upper supply range"]
-    VALUE3,
-    #[doc = "Internal reference, lower supply range"]
-    VALUE4,
-}
-impl AREFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            AREFW::VALUE1 => 0,
-            AREFW::VALUE3 => 2,
-            AREFW::VALUE4 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _AREFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _AREFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: AREFW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "External reference, upper supply range"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(AREFW::VALUE1)
-    }
-    #[doc = "Internal reference, upper supply range"]
-    #[inline]
-    pub fn value3(self) -> &'a mut W {
-        self.variant(AREFW::VALUE3)
-    }
-    #[doc = "Internal reference, lower supply range"]
-    #[inline]
-    pub fn value4(self) -> &'a mut W {
-        self.variant(AREFW::VALUE4)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `ANOFF`"]
-pub enum ANOFFW {
-    #[doc = "Converter is on"]
-    VALUE1,
-    #[doc = "Converter is permanently off"]
-    VALUE2,
-}
-impl ANOFFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ANOFFW::VALUE1 => false,
-            ANOFFW::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _ANOFFW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _ANOFFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: ANOFFW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Converter is on"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(ANOFFW::VALUE1)
-    }
-    #[doc = "Converter is permanently off"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(ANOFFW::VALUE2)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `SCWC`"]
-pub enum SCWCW {
-    #[doc = "No write access to SHS configuration"]
-    VALUE1,
-    #[doc = "Bitfields ANOFF, AREF, DIVS can be written"]
-    VALUE2,
-}
-impl SCWCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SCWCW::VALUE1 => false,
-            SCWCW::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SCWCW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _SCWCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SCWCW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "No write access to SHS configuration"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(SCWCW::VALUE1)
-    }
-    #[doc = "Bitfields ANOFF, AREF, DIVS can be written"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(SCWCW::VALUE2)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `TC`"]
-pub enum TCW {
-    #[doc = "Internal test functions enabled"]
-    VALUE1,
-}
-impl TCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TCW::VALUE1 => 11,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _TCW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _TCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: TCW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "Internal test functions enabled"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(TCW::VALUE1)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 15;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
+        *self == STATE_A::VALUE6
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Divider Factor for the SHS Clock"]
-    #[inline]
-    pub fn divs(&self) -> DIVSR {
-        DIVSR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn divs(&self) -> DIVS_R {
+        DIVS_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 10:11 - Analog Reference Voltage Selection"]
-    #[inline]
-    pub fn aref(&self) -> AREFR {
-        AREFR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn aref(&self) -> AREF_R {
+        AREF_R::new(((self.bits >> 10) & 0x03) as u8)
     }
     #[doc = "Bit 12 - Analog Converter Power Down Force"]
-    #[inline]
-    pub fn anoff(&self) -> ANOFFR {
-        ANOFFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn anoff(&self) -> ANOFF_R {
+        ANOFF_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Analog Converter Ready"]
-    #[inline]
-    pub fn anrdy(&self) -> ANRDYR {
-        ANRDYR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn anrdy(&self) -> ANRDY_R {
+        ANRDY_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Sample Pending on S&H Unit x"]
-    #[inline]
-    pub fn sp0(&self) -> SP0R {
-        SP0R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sp0(&self) -> SP0_R {
+        SP0_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Sample Pending on S&H Unit x"]
-    #[inline]
-    pub fn sp1(&self) -> SP1R {
-        SP1R::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn sp1(&self) -> SP1_R {
+        SP1_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bits 24:27 - Test Control"]
-    #[inline]
-    pub fn tc(&self) -> TCR {
-        TCR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn tc(&self) -> TC_R {
+        TC_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bits 28:31 - Current State of Sequencer"]
-    #[inline]
-    pub fn state(&self) -> STATER {
-        STATER::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn state(&self) -> STATE_R {
+        STATE_R::new(((self.bits >> 28) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 4096 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - Divider Factor for the SHS Clock"]
-    #[inline]
-    pub fn divs(&mut self) -> _DIVSW {
-        _DIVSW { w: self }
+    #[inline(always)]
+    pub fn divs(&mut self) -> DIVS_W {
+        DIVS_W { w: self }
     }
     #[doc = "Bits 10:11 - Analog Reference Voltage Selection"]
-    #[inline]
-    pub fn aref(&mut self) -> _AREFW {
-        _AREFW { w: self }
+    #[inline(always)]
+    pub fn aref(&mut self) -> AREF_W {
+        AREF_W { w: self }
     }
     #[doc = "Bit 12 - Analog Converter Power Down Force"]
-    #[inline]
-    pub fn anoff(&mut self) -> _ANOFFW {
-        _ANOFFW { w: self }
+    #[inline(always)]
+    pub fn anoff(&mut self) -> ANOFF_W {
+        ANOFF_W { w: self }
     }
     #[doc = "Bit 15 - Write Control for SHS Configuration"]
-    #[inline]
-    pub fn scwc(&mut self) -> _SCWCW {
-        _SCWCW { w: self }
+    #[inline(always)]
+    pub fn scwc(&mut self) -> SCWC_W {
+        SCWC_W { w: self }
     }
     #[doc = "Bits 24:27 - Test Control"]
-    #[inline]
-    pub fn tc(&mut self) -> _TCW {
-        _TCW { w: self }
+    #[inline(always)]
+    pub fn tc(&mut self) -> TC_W {
+        TC_W { w: self }
     }
 }

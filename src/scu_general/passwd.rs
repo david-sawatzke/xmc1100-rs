@@ -1,284 +1,195 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PASSWD {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PASSWD"]
+pub type R = crate::R<u32, super::PASSWD>;
+#[doc = "Writer for register PASSWD"]
+pub type W = crate::W<u32, super::PASSWD>;
+#[doc = "Register PASSWD `reset()`'s with value 0x07"]
+impl crate::ResetValue for super::PASSWD {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x07
     }
 }
-#[doc = "Possible values of the field `MODE`"]
+#[doc = "Bit Protection Scheme Control Bits\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MODER {
-    #[doc = "Scheme disabled - direct access to the protected bits is allowed."]
+pub enum MODE_A {
+    #[doc = "0: Scheme disabled - direct access to the protected bits is allowed."]
     VALUE1,
-    #[doc = "Scheme enabled - the bit field PASS has to be written with the passwords to open and close the access to the protected bits. (Default)"]
+    #[doc = "3: Scheme enabled - the bit field PASS has to be written with the passwords to open and close the access to the protected bits. (Default)"]
     VALUE2,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl MODER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            MODER::VALUE1 => 0,
-            MODER::VALUE2 => 3,
-            MODER::_Reserved(bits) => bits,
+impl From<MODE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: MODE_A) -> Self {
+        match variant {
+            MODE_A::VALUE1 => 0,
+            MODE_A::VALUE2 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> MODER {
-        match value {
-            0 => MODER::VALUE1,
-            3 => MODER::VALUE2,
-            i => MODER::_Reserved(i),
+}
+#[doc = "Reader of field `MODE`"]
+pub type MODE_R = crate::R<u8, MODE_A>;
+impl MODE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, MODE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(MODE_A::VALUE1),
+            3 => Val(MODE_A::VALUE2),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == MODER::VALUE1
+        *self == MODE_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == MODER::VALUE2
+        *self == MODE_A::VALUE2
     }
 }
-#[doc = "Possible values of the field `PROTS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PROTSR {
-    #[doc = "Software is able to write to all protected bits."]
-    VALUE1,
-    #[doc = "Software is unable to write to any of the protected bits."]
-    VALUE2,
-}
-impl PROTSR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PROTSR::VALUE1 => false,
-            PROTSR::VALUE2 => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PROTSR {
-        match value {
-            false => PROTSR::VALUE1,
-            true => PROTSR::VALUE2,
-        }
-    }
-    #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
-    pub fn is_value1(&self) -> bool {
-        *self == PROTSR::VALUE1
-    }
-    #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
-    pub fn is_value2(&self) -> bool {
-        *self == PROTSR::VALUE2
-    }
-}
-#[doc = "Values that can be written to the field `MODE`"]
-pub enum MODEW {
-    #[doc = "Scheme disabled - direct access to the protected bits is allowed."]
-    VALUE1,
-    #[doc = "Scheme enabled - the bit field PASS has to be written with the passwords to open and close the access to the protected bits. (Default)"]
-    VALUE2,
-}
-impl MODEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            MODEW::VALUE1 => 0,
-            MODEW::VALUE2 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MODEW<'a> {
+#[doc = "Write proxy for field `MODE`"]
+pub struct MODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MODEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MODEW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> MODE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MODE_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Scheme disabled - direct access to the protected bits is allowed."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(MODEW::VALUE1)
+        self.variant(MODE_A::VALUE1)
     }
     #[doc = "Scheme enabled - the bit field PASS has to be written with the passwords to open and close the access to the protected bits. (Default)"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(MODEW::VALUE2)
+        self.variant(MODE_A::VALUE2)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PASS`"]
-pub enum PASSW {
-    #[doc = "Enables writing of the bit field MODE."]
+#[doc = "Bit Protection Signal Status Bit\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PROTS_A {
+    #[doc = "0: Software is able to write to all protected bits."]
     VALUE1,
-    #[doc = "Opens access to writing of all protected bits."]
+    #[doc = "1: Software is unable to write to any of the protected bits."]
     VALUE2,
-    #[doc = "Closes access to writing of all protected bits."]
-    VALUE3,
 }
-impl PASSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PASSW::VALUE1 => 24,
-            PASSW::VALUE2 => 19,
-            PASSW::VALUE3 => 21,
+impl From<PROTS_A> for bool {
+    #[inline(always)]
+    fn from(variant: PROTS_A) -> Self {
+        match variant {
+            PROTS_A::VALUE1 => false,
+            PROTS_A::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PASSW<'a> {
+#[doc = "Reader of field `PROTS`"]
+pub type PROTS_R = crate::R<bool, PROTS_A>;
+impl PROTS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PROTS_A {
+        match self.bits {
+            false => PROTS_A::VALUE1,
+            true => PROTS_A::VALUE2,
+        }
+    }
+    #[doc = "Checks if the value of the field is `VALUE1`"]
+    #[inline(always)]
+    pub fn is_value1(&self) -> bool {
+        *self == PROTS_A::VALUE1
+    }
+    #[doc = "Checks if the value of the field is `VALUE2`"]
+    #[inline(always)]
+    pub fn is_value2(&self) -> bool {
+        *self == PROTS_A::VALUE2
+    }
+}
+#[doc = "Password Bits\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PASS_AW {
+    #[doc = "24: Enables writing of the bit field MODE."]
+    VALUE1,
+    #[doc = "19: Opens access to writing of all protected bits."]
+    VALUE2,
+    #[doc = "21: Closes access to writing of all protected bits."]
+    VALUE3,
+}
+impl From<PASS_AW> for u8 {
+    #[inline(always)]
+    fn from(variant: PASS_AW) -> Self {
+        match variant {
+            PASS_AW::VALUE1 => 24,
+            PASS_AW::VALUE2 => 19,
+            PASS_AW::VALUE3 => 21,
+        }
+    }
+}
+#[doc = "Write proxy for field `PASS`"]
+pub struct PASS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PASSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PASSW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> PASS_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PASS_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Enables writing of the bit field MODE."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(PASSW::VALUE1)
+        self.variant(PASS_AW::VALUE1)
     }
     #[doc = "Opens access to writing of all protected bits."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(PASSW::VALUE2)
+        self.variant(PASS_AW::VALUE2)
     }
     #[doc = "Closes access to writing of all protected bits."]
-    #[inline]
+    #[inline(always)]
     pub fn value3(self) -> &'a mut W {
-        self.variant(PASSW::VALUE3)
+        self.variant(PASS_AW::VALUE3)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x1f << 3)) | (((value as u32) & 0x1f) << 3);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Bit Protection Scheme Control Bits"]
-    #[inline]
-    pub fn mode(&self) -> MODER {
-        MODER::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn mode(&self) -> MODE_R {
+        MODE_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bit 2 - Bit Protection Signal Status Bit"]
-    #[inline]
-    pub fn prots(&self) -> PROTSR {
-        PROTSR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn prots(&self) -> PROTS_R {
+        PROTS_R::new(((self.bits >> 2) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 7 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Bit Protection Scheme Control Bits"]
-    #[inline]
-    pub fn mode(&mut self) -> _MODEW {
-        _MODEW { w: self }
+    #[inline(always)]
+    pub fn mode(&mut self) -> MODE_W {
+        MODE_W { w: self }
     }
     #[doc = "Bits 3:7 - Password Bits"]
-    #[inline]
-    pub fn pass(&mut self) -> _PASSW {
-        _PASSW { w: self }
+    #[inline(always)]
+    pub fn pass(&mut self) -> PASS_W {
+        PASS_W { w: self }
     }
 }

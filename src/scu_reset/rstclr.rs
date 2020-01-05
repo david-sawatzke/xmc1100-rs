@@ -1,155 +1,134 @@
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RSTCLR {
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+#[doc = "Writer for register RSTCLR"]
+pub type W = crate::W<u32, super::RSTCLR>;
+#[doc = "Register RSTCLR `reset()`'s with value 0"]
+impl crate::ResetValue for super::RSTCLR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Values that can be written to the field `RSCLR`"]
-pub enum RSCLRW {
-    #[doc = "no effect"]
+#[doc = "Clear Reset Status\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum RSCLR_AW {
+    #[doc = "0: no effect"]
     VALUE1,
-    #[doc = "Clears field RSTSTAT.RSTSTAT"]
+    #[doc = "1: Clears field RSTSTAT.RSTSTAT"]
     VALUE2,
 }
-impl RSCLRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RSCLRW::VALUE1 => false,
-            RSCLRW::VALUE2 => true,
+impl From<RSCLR_AW> for bool {
+    #[inline(always)]
+    fn from(variant: RSCLR_AW) -> Self {
+        match variant {
+            RSCLR_AW::VALUE1 => false,
+            RSCLR_AW::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _RSCLRW<'a> {
+#[doc = "Write proxy for field `RSCLR`"]
+pub struct RSCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RSCLRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RSCLRW) -> &'a mut W {
+impl<'a> RSCLR_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RSCLR_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "no effect"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(RSCLRW::VALUE1)
+        self.variant(RSCLR_AW::VALUE1)
     }
     #[doc = "Clears field RSTSTAT.RSTSTAT"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(RSCLRW::VALUE2)
+        self.variant(RSCLR_AW::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `LCKEN`"]
-pub enum LCKENW {
-    #[doc = "no effect"]
+#[doc = "Enable Lockup Reset\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LCKEN_AW {
+    #[doc = "0: no effect"]
     VALUE1,
-    #[doc = "Disable reset when Lockup gets asserted"]
+    #[doc = "1: Disable reset when Lockup gets asserted"]
     VALUE2,
 }
-impl LCKENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LCKENW::VALUE1 => false,
-            LCKENW::VALUE2 => true,
+impl From<LCKEN_AW> for bool {
+    #[inline(always)]
+    fn from(variant: LCKEN_AW) -> Self {
+        match variant {
+            LCKEN_AW::VALUE1 => false,
+            LCKEN_AW::VALUE2 => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _LCKENW<'a> {
+#[doc = "Write proxy for field `LCKEN`"]
+pub struct LCKEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LCKENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: LCKENW) -> &'a mut W {
+impl<'a> LCKEN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: LCKEN_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "no effect"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(LCKENW::VALUE1)
+        self.variant(LCKEN_AW::VALUE1)
     }
     #[doc = "Disable reset when Lockup gets asserted"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(LCKENW::VALUE2)
+        self.variant(LCKEN_AW::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 10;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
         self.w
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Clear Reset Status"]
-    #[inline]
-    pub fn rsclr(&mut self) -> _RSCLRW {
-        _RSCLRW { w: self }
+    #[inline(always)]
+    pub fn rsclr(&mut self) -> RSCLR_W {
+        RSCLR_W { w: self }
     }
     #[doc = "Bit 10 - Enable Lockup Reset"]
-    #[inline]
-    pub fn lcken(&mut self) -> _LCKENW {
-        _LCKENW { w: self }
+    #[inline(always)]
+    pub fn lcken(&mut self) -> LCKEN_W {
+        LCKEN_W { w: self }
     }
 }

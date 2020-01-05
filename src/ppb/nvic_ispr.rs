@@ -1,167 +1,94 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::NVIC_ISPR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register NVIC_ISPR"]
+pub type R = crate::R<u32, super::NVIC_ISPR>;
+#[doc = "Writer for register NVIC_ISPR"]
+pub type W = crate::W<u32, super::NVIC_ISPR>;
+#[doc = "Register NVIC_ISPR `reset()`'s with value 0"]
+impl crate::ResetValue for super::NVIC_ISPR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `SETPEND`"]
+#[doc = "Interrupt Node Set-pending\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SETPENDR {
-    #[doc = "Read: Interrupt node is not pending. Write: No effect"]
+pub enum SETPEND_A {
+    #[doc = "0: Read: Interrupt node is not pending. Write: No effect"]
     VALUE1,
-    #[doc = "Read: Interrupt node is pending. Write: Change interrupt state to pending."]
+    #[doc = "1: Read: Interrupt node is pending. Write: Change interrupt state to pending."]
     VALUE2,
-    #[doc = r" Reserved"]
-    _Reserved(u32),
 }
-impl SETPENDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        match *self {
-            SETPENDR::VALUE1 => 0,
-            SETPENDR::VALUE2 => 1,
-            SETPENDR::_Reserved(bits) => bits,
+impl From<SETPEND_A> for u32 {
+    #[inline(always)]
+    fn from(variant: SETPEND_A) -> Self {
+        match variant {
+            SETPEND_A::VALUE1 => 0,
+            SETPEND_A::VALUE2 => 1,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u32) -> SETPENDR {
-        match value {
-            0 => SETPENDR::VALUE1,
-            1 => SETPENDR::VALUE2,
-            i => SETPENDR::_Reserved(i),
+}
+#[doc = "Reader of field `SETPEND`"]
+pub type SETPEND_R = crate::R<u32, SETPEND_A>;
+impl SETPEND_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u32, SETPEND_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(SETPEND_A::VALUE1),
+            1 => Val(SETPEND_A::VALUE2),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SETPENDR::VALUE1
+        *self == SETPEND_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SETPENDR::VALUE2
+        *self == SETPEND_A::VALUE2
     }
 }
-#[doc = "Values that can be written to the field `SETPEND`"]
-pub enum SETPENDW {
-    #[doc = "Read: Interrupt node is not pending. Write: No effect"]
-    VALUE1,
-    #[doc = "Read: Interrupt node is pending. Write: Change interrupt state to pending."]
-    VALUE2,
-}
-impl SETPENDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u32 {
-        match *self {
-            SETPENDW::VALUE1 => 0,
-            SETPENDW::VALUE2 => 1,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SETPENDW<'a> {
+#[doc = "Write proxy for field `SETPEND`"]
+pub struct SETPEND_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SETPENDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SETPENDW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> SETPEND_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SETPEND_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Read: Interrupt node is not pending. Write: No effect"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(SETPENDW::VALUE1)
+        self.variant(SETPEND_A::VALUE1)
     }
     #[doc = "Read: Interrupt node is pending. Write: Change interrupt state to pending."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(SETPENDW::VALUE2)
+        self.variant(SETPEND_A::VALUE2)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
-        const MASK: u32 = 4294967295;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xffff_ffff) | ((value as u32) & 0xffff_ffff);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:31 - Interrupt Node Set-pending"]
-    #[inline]
-    pub fn setpend(&self) -> SETPENDR {
-        SETPENDR::_from({
-            const MASK: u32 = 4294967295;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u32
-        })
+    #[inline(always)]
+    pub fn setpend(&self) -> SETPEND_R {
+        SETPEND_R::new((self.bits & 0xffff_ffff) as u32)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:31 - Interrupt Node Set-pending"]
-    #[inline]
-    pub fn setpend(&mut self) -> _SETPENDW {
-        _SETPENDW { w: self }
+    #[inline(always)]
+    pub fn setpend(&mut self) -> SETPEND_W {
+        SETPEND_W { w: self }
     }
 }

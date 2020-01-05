@@ -1,439 +1,303 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u16,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u16,
-}
-impl super::ANAVDEL {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register ANAVDEL"]
+pub type R = crate::R<u16, super::ANAVDEL>;
+#[doc = "Writer for register ANAVDEL"]
+pub type W = crate::W<u16, super::ANAVDEL>;
+#[doc = "Register ANAVDEL `reset()`'s with value 0x1c"]
+impl crate::ResetValue for super::ANAVDEL {
+    type Type = u16;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0x1c
     }
 }
-#[doc = "Possible values of the field `VDEL_SELECT`"]
+#[doc = "VDEL Range Select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VDEL_SELECTR {
-    #[doc = "2.25V"]
+pub enum VDEL_SELECT_A {
+    #[doc = "0: 2.25V"]
     VALUE1,
-    #[doc = "3.0V"]
+    #[doc = "1: 3.0V"]
     VALUE2,
-    #[doc = "4.4V"]
+    #[doc = "2: 4.4V"]
     VALUE3,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl VDEL_SELECTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            VDEL_SELECTR::VALUE1 => 0,
-            VDEL_SELECTR::VALUE2 => 1,
-            VDEL_SELECTR::VALUE3 => 2,
-            VDEL_SELECTR::_Reserved(bits) => bits,
+impl From<VDEL_SELECT_A> for u8 {
+    #[inline(always)]
+    fn from(variant: VDEL_SELECT_A) -> Self {
+        match variant {
+            VDEL_SELECT_A::VALUE1 => 0,
+            VDEL_SELECT_A::VALUE2 => 1,
+            VDEL_SELECT_A::VALUE3 => 2,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> VDEL_SELECTR {
-        match value {
-            0 => VDEL_SELECTR::VALUE1,
-            1 => VDEL_SELECTR::VALUE2,
-            2 => VDEL_SELECTR::VALUE3,
-            i => VDEL_SELECTR::_Reserved(i),
+}
+#[doc = "Reader of field `VDEL_SELECT`"]
+pub type VDEL_SELECT_R = crate::R<u8, VDEL_SELECT_A>;
+impl VDEL_SELECT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, VDEL_SELECT_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(VDEL_SELECT_A::VALUE1),
+            1 => Val(VDEL_SELECT_A::VALUE2),
+            2 => Val(VDEL_SELECT_A::VALUE3),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == VDEL_SELECTR::VALUE1
+        *self == VDEL_SELECT_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == VDEL_SELECTR::VALUE2
+        *self == VDEL_SELECT_A::VALUE2
     }
     #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value3(&self) -> bool {
-        *self == VDEL_SELECTR::VALUE3
+        *self == VDEL_SELECT_A::VALUE3
     }
 }
-#[doc = "Possible values of the field `VDEL_TIM_ADJ`"]
+#[doc = "Write proxy for field `VDEL_SELECT`"]
+pub struct VDEL_SELECT_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> VDEL_SELECT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: VDEL_SELECT_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "2.25V"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(VDEL_SELECT_A::VALUE1)
+    }
+    #[doc = "3.0V"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(VDEL_SELECT_A::VALUE2)
+    }
+    #[doc = "4.4V"]
+    #[inline(always)]
+    pub fn value3(self) -> &'a mut W {
+        self.variant(VDEL_SELECT_A::VALUE3)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x03) | ((value as u16) & 0x03);
+        self.w
+    }
+}
+#[doc = "VDEL Timing Setting\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VDEL_TIM_ADJR {
-    #[doc = "typ 1us - slowest response time"]
+pub enum VDEL_TIM_ADJ_A {
+    #[doc = "0: typ 1us - slowest response time"]
     VALUE1,
-    #[doc = "typ 500n"]
+    #[doc = "1: typ 500n"]
     VALUE2,
-    #[doc = "typ 250n"]
+    #[doc = "2: typ 250n"]
     VALUE3,
-    #[doc = "no delay - fastest response time."]
+    #[doc = "3: no delay - fastest response time."]
     VALUE4,
 }
-impl VDEL_TIM_ADJR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            VDEL_TIM_ADJR::VALUE1 => 0,
-            VDEL_TIM_ADJR::VALUE2 => 1,
-            VDEL_TIM_ADJR::VALUE3 => 2,
-            VDEL_TIM_ADJR::VALUE4 => 3,
+impl From<VDEL_TIM_ADJ_A> for u8 {
+    #[inline(always)]
+    fn from(variant: VDEL_TIM_ADJ_A) -> Self {
+        match variant {
+            VDEL_TIM_ADJ_A::VALUE1 => 0,
+            VDEL_TIM_ADJ_A::VALUE2 => 1,
+            VDEL_TIM_ADJ_A::VALUE3 => 2,
+            VDEL_TIM_ADJ_A::VALUE4 => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> VDEL_TIM_ADJR {
-        match value {
-            0 => VDEL_TIM_ADJR::VALUE1,
-            1 => VDEL_TIM_ADJR::VALUE2,
-            2 => VDEL_TIM_ADJR::VALUE3,
-            3 => VDEL_TIM_ADJR::VALUE4,
+}
+#[doc = "Reader of field `VDEL_TIM_ADJ`"]
+pub type VDEL_TIM_ADJ_R = crate::R<u8, VDEL_TIM_ADJ_A>;
+impl VDEL_TIM_ADJ_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> VDEL_TIM_ADJ_A {
+        match self.bits {
+            0 => VDEL_TIM_ADJ_A::VALUE1,
+            1 => VDEL_TIM_ADJ_A::VALUE2,
+            2 => VDEL_TIM_ADJ_A::VALUE3,
+            3 => VDEL_TIM_ADJ_A::VALUE4,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == VDEL_TIM_ADJR::VALUE1
+        *self == VDEL_TIM_ADJ_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == VDEL_TIM_ADJR::VALUE2
+        *self == VDEL_TIM_ADJ_A::VALUE2
     }
     #[doc = "Checks if the value of the field is `VALUE3`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value3(&self) -> bool {
-        *self == VDEL_TIM_ADJR::VALUE3
+        *self == VDEL_TIM_ADJ_A::VALUE3
     }
     #[doc = "Checks if the value of the field is `VALUE4`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value4(&self) -> bool {
-        *self == VDEL_TIM_ADJR::VALUE4
+        *self == VDEL_TIM_ADJ_A::VALUE4
     }
 }
-#[doc = "Possible values of the field `VDEL_EN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VDEL_ENR {
-    #[doc = "VDEL is disabled"]
-    VALUE1,
-    #[doc = "VDEL is active"]
-    VALUE2,
+#[doc = "Write proxy for field `VDEL_TIM_ADJ`"]
+pub struct VDEL_TIM_ADJ_W<'a> {
+    w: &'a mut W,
 }
-impl VDEL_ENR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            VDEL_ENR::VALUE1 => false,
-            VDEL_ENR::VALUE2 => true,
+impl<'a> VDEL_TIM_ADJ_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: VDEL_TIM_ADJ_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> VDEL_ENR {
-        match value {
-            false => VDEL_ENR::VALUE1,
-            true => VDEL_ENR::VALUE2,
+    #[doc = "typ 1us - slowest response time"]
+    #[inline(always)]
+    pub fn value1(self) -> &'a mut W {
+        self.variant(VDEL_TIM_ADJ_A::VALUE1)
+    }
+    #[doc = "typ 500n"]
+    #[inline(always)]
+    pub fn value2(self) -> &'a mut W {
+        self.variant(VDEL_TIM_ADJ_A::VALUE2)
+    }
+    #[doc = "typ 250n"]
+    #[inline(always)]
+    pub fn value3(self) -> &'a mut W {
+        self.variant(VDEL_TIM_ADJ_A::VALUE3)
+    }
+    #[doc = "no delay - fastest response time."]
+    #[inline(always)]
+    pub fn value4(self) -> &'a mut W {
+        self.variant(VDEL_TIM_ADJ_A::VALUE4)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 2)) | (((value as u16) & 0x03) << 2);
+        self.w
+    }
+}
+#[doc = "VDEL unit Enable\n\nValue on reset: 1"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum VDEL_EN_A {
+    #[doc = "0: VDEL is disabled"]
+    VALUE1,
+    #[doc = "1: VDEL is active"]
+    VALUE2,
+}
+impl From<VDEL_EN_A> for bool {
+    #[inline(always)]
+    fn from(variant: VDEL_EN_A) -> Self {
+        match variant {
+            VDEL_EN_A::VALUE1 => false,
+            VDEL_EN_A::VALUE2 => true,
+        }
+    }
+}
+#[doc = "Reader of field `VDEL_EN`"]
+pub type VDEL_EN_R = crate::R<bool, VDEL_EN_A>;
+impl VDEL_EN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> VDEL_EN_A {
+        match self.bits {
+            false => VDEL_EN_A::VALUE1,
+            true => VDEL_EN_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == VDEL_ENR::VALUE1
+        *self == VDEL_EN_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == VDEL_ENR::VALUE2
+        *self == VDEL_EN_A::VALUE2
     }
 }
-#[doc = "Values that can be written to the field `VDEL_SELECT`"]
-pub enum VDEL_SELECTW {
-    #[doc = "2.25V"]
-    VALUE1,
-    #[doc = "3.0V"]
-    VALUE2,
-    #[doc = "4.4V"]
-    VALUE3,
-}
-impl VDEL_SELECTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            VDEL_SELECTW::VALUE1 => 0,
-            VDEL_SELECTW::VALUE2 => 1,
-            VDEL_SELECTW::VALUE3 => 2,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _VDEL_SELECTW<'a> {
+#[doc = "Write proxy for field `VDEL_EN`"]
+pub struct VDEL_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VDEL_SELECTW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: VDEL_SELECTW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "2.25V"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(VDEL_SELECTW::VALUE1)
-    }
-    #[doc = "3.0V"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(VDEL_SELECTW::VALUE2)
-    }
-    #[doc = "4.4V"]
-    #[inline]
-    pub fn value3(self) -> &'a mut W {
-        self.variant(VDEL_SELECTW::VALUE3)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `VDEL_TIM_ADJ`"]
-pub enum VDEL_TIM_ADJW {
-    #[doc = "typ 1us - slowest response time"]
-    VALUE1,
-    #[doc = "typ 500n"]
-    VALUE2,
-    #[doc = "typ 250n"]
-    VALUE3,
-    #[doc = "no delay - fastest response time."]
-    VALUE4,
-}
-impl VDEL_TIM_ADJW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            VDEL_TIM_ADJW::VALUE1 => 0,
-            VDEL_TIM_ADJW::VALUE2 => 1,
-            VDEL_TIM_ADJW::VALUE3 => 2,
-            VDEL_TIM_ADJW::VALUE4 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _VDEL_TIM_ADJW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _VDEL_TIM_ADJW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: VDEL_TIM_ADJW) -> &'a mut W {
+impl<'a> VDEL_EN_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: VDEL_EN_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "typ 1us - slowest response time"]
-    #[inline]
-    pub fn value1(self) -> &'a mut W {
-        self.variant(VDEL_TIM_ADJW::VALUE1)
-    }
-    #[doc = "typ 500n"]
-    #[inline]
-    pub fn value2(self) -> &'a mut W {
-        self.variant(VDEL_TIM_ADJW::VALUE2)
-    }
-    #[doc = "typ 250n"]
-    #[inline]
-    pub fn value3(self) -> &'a mut W {
-        self.variant(VDEL_TIM_ADJW::VALUE3)
-    }
-    #[doc = "no delay - fastest response time."]
-    #[inline]
-    pub fn value4(self) -> &'a mut W {
-        self.variant(VDEL_TIM_ADJW::VALUE4)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `VDEL_EN`"]
-pub enum VDEL_ENW {
-    #[doc = "VDEL is disabled"]
-    VALUE1,
-    #[doc = "VDEL is active"]
-    VALUE2,
-}
-impl VDEL_ENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            VDEL_ENW::VALUE1 => false,
-            VDEL_ENW::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _VDEL_ENW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _VDEL_ENW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: VDEL_ENW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "VDEL is disabled"]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(VDEL_ENW::VALUE1)
+        self.variant(VDEL_EN_A::VALUE1)
     }
     #[doc = "VDEL is active"]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(VDEL_ENW::VALUE2)
+        self.variant(VDEL_EN_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u16) << OFFSET);
-        self.w.bits |= ((value & MASK) as u16) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u16) & 0x01) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - VDEL Range Select"]
-    #[inline]
-    pub fn vdel_select(&self) -> VDEL_SELECTR {
-        VDEL_SELECTR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u16) as u8
-        })
+    #[inline(always)]
+    pub fn vdel_select(&self) -> VDEL_SELECT_R {
+        VDEL_SELECT_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 2:3 - VDEL Timing Setting"]
-    #[inline]
-    pub fn vdel_tim_adj(&self) -> VDEL_TIM_ADJR {
-        VDEL_TIM_ADJR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u16) as u8
-        })
+    #[inline(always)]
+    pub fn vdel_tim_adj(&self) -> VDEL_TIM_ADJ_R {
+        VDEL_TIM_ADJ_R::new(((self.bits >> 2) & 0x03) as u8)
     }
     #[doc = "Bit 4 - VDEL unit Enable"]
-    #[inline]
-    pub fn vdel_en(&self) -> VDEL_ENR {
-        VDEL_ENR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u16) != 0
-        })
+    #[inline(always)]
+    pub fn vdel_en(&self) -> VDEL_EN_R {
+        VDEL_EN_R::new(((self.bits >> 4) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 28 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u16) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - VDEL Range Select"]
-    #[inline]
-    pub fn vdel_select(&mut self) -> _VDEL_SELECTW {
-        _VDEL_SELECTW { w: self }
+    #[inline(always)]
+    pub fn vdel_select(&mut self) -> VDEL_SELECT_W {
+        VDEL_SELECT_W { w: self }
     }
     #[doc = "Bits 2:3 - VDEL Timing Setting"]
-    #[inline]
-    pub fn vdel_tim_adj(&mut self) -> _VDEL_TIM_ADJW {
-        _VDEL_TIM_ADJW { w: self }
+    #[inline(always)]
+    pub fn vdel_tim_adj(&mut self) -> VDEL_TIM_ADJ_W {
+        VDEL_TIM_ADJ_W { w: self }
     }
     #[doc = "Bit 4 - VDEL unit Enable"]
-    #[inline]
-    pub fn vdel_en(&mut self) -> _VDEL_ENW {
-        _VDEL_ENW { w: self }
+    #[inline(always)]
+    pub fn vdel_en(&mut self) -> VDEL_EN_W {
+        VDEL_EN_W { w: self }
     }
 }

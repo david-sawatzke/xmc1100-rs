@@ -1,225 +1,189 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::CPUID {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `Revision`"]
+#[doc = "Reader of register CPUID"]
+pub type R = crate::R<u32, super::CPUID>;
+#[doc = "Revision Number\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum REVISIONR {
-    #[doc = "Patch 0"]
+pub enum REVISION_A {
+    #[doc = "0: Patch 0"]
     VALUE1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl REVISIONR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            REVISIONR::VALUE1 => 0,
-            REVISIONR::_Reserved(bits) => bits,
+impl From<REVISION_A> for u8 {
+    #[inline(always)]
+    fn from(variant: REVISION_A) -> Self {
+        match variant {
+            REVISION_A::VALUE1 => 0,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> REVISIONR {
-        match value {
-            0 => REVISIONR::VALUE1,
-            i => REVISIONR::_Reserved(i),
+}
+#[doc = "Reader of field `Revision`"]
+pub type REVISION_R = crate::R<u8, REVISION_A>;
+impl REVISION_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, REVISION_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(REVISION_A::VALUE1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == REVISIONR::VALUE1
+        *self == REVISION_A::VALUE1
     }
 }
-#[doc = "Possible values of the field `PartNo`"]
+#[doc = "Part Number of the Processor\n\nValue on reset: 3104"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PARTNOR {
-    #[doc = "Cortex-M0"]
+pub enum PARTNO_A {
+    #[doc = "3104: Cortex-M0"]
     VALUE1,
-    #[doc = r" Reserved"]
-    _Reserved(u16),
 }
-impl PARTNOR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        match *self {
-            PARTNOR::VALUE1 => 3104,
-            PARTNOR::_Reserved(bits) => bits,
+impl From<PARTNO_A> for u16 {
+    #[inline(always)]
+    fn from(variant: PARTNO_A) -> Self {
+        match variant {
+            PARTNO_A::VALUE1 => 3104,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u16) -> PARTNOR {
-        match value {
-            3104 => PARTNOR::VALUE1,
-            i => PARTNOR::_Reserved(i),
+}
+#[doc = "Reader of field `PartNo`"]
+pub type PARTNO_R = crate::R<u16, PARTNO_A>;
+impl PARTNO_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u16, PARTNO_A> {
+        use crate::Variant::*;
+        match self.bits {
+            3104 => Val(PARTNO_A::VALUE1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == PARTNOR::VALUE1
+        *self == PARTNO_A::VALUE1
     }
 }
-#[doc = "Possible values of the field `Architecture`"]
+#[doc = "Architecture\n\nValue on reset: 12"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ARCHITECTURER {
-    #[doc = "ARMv6-M"]
+pub enum ARCHITECTURE_A {
+    #[doc = "12: ARMv6-M"]
     VALUE1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl ARCHITECTURER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            ARCHITECTURER::VALUE1 => 12,
-            ARCHITECTURER::_Reserved(bits) => bits,
+impl From<ARCHITECTURE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: ARCHITECTURE_A) -> Self {
+        match variant {
+            ARCHITECTURE_A::VALUE1 => 12,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> ARCHITECTURER {
-        match value {
-            12 => ARCHITECTURER::VALUE1,
-            i => ARCHITECTURER::_Reserved(i),
+}
+#[doc = "Reader of field `Architecture`"]
+pub type ARCHITECTURE_R = crate::R<u8, ARCHITECTURE_A>;
+impl ARCHITECTURE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, ARCHITECTURE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            12 => Val(ARCHITECTURE_A::VALUE1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == ARCHITECTURER::VALUE1
+        *self == ARCHITECTURE_A::VALUE1
     }
 }
-#[doc = "Possible values of the field `Variant`"]
+#[doc = "Variant Number\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum VARIANTR {
-    #[doc = "Revision 0"]
+pub enum VARIANT_A {
+    #[doc = "0: Revision 0"]
     VALUE1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl VARIANTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            VARIANTR::VALUE1 => 0,
-            VARIANTR::_Reserved(bits) => bits,
+impl From<VARIANT_A> for u8 {
+    #[inline(always)]
+    fn from(variant: VARIANT_A) -> Self {
+        match variant {
+            VARIANT_A::VALUE1 => 0,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> VARIANTR {
-        match value {
-            0 => VARIANTR::VALUE1,
-            i => VARIANTR::_Reserved(i),
+}
+#[doc = "Reader of field `Variant`"]
+pub type VARIANT_R = crate::R<u8, VARIANT_A>;
+impl VARIANT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, VARIANT_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(VARIANT_A::VALUE1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == VARIANTR::VALUE1
+        *self == VARIANT_A::VALUE1
     }
 }
-#[doc = "Possible values of the field `Implementer`"]
+#[doc = "Implementer Code\n\nValue on reset: 65"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IMPLEMENTERR {
-    #[doc = "ARM"]
+pub enum IMPLEMENTER_A {
+    #[doc = "65: ARM"]
     VALUE1,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl IMPLEMENTERR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            IMPLEMENTERR::VALUE1 => 65,
-            IMPLEMENTERR::_Reserved(bits) => bits,
+impl From<IMPLEMENTER_A> for u8 {
+    #[inline(always)]
+    fn from(variant: IMPLEMENTER_A) -> Self {
+        match variant {
+            IMPLEMENTER_A::VALUE1 => 65,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> IMPLEMENTERR {
-        match value {
-            65 => IMPLEMENTERR::VALUE1,
-            i => IMPLEMENTERR::_Reserved(i),
+}
+#[doc = "Reader of field `Implementer`"]
+pub type IMPLEMENTER_R = crate::R<u8, IMPLEMENTER_A>;
+impl IMPLEMENTER_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, IMPLEMENTER_A> {
+        use crate::Variant::*;
+        match self.bits {
+            65 => Val(IMPLEMENTER_A::VALUE1),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == IMPLEMENTERR::VALUE1
+        *self == IMPLEMENTER_A::VALUE1
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Revision Number"]
-    #[inline]
-    pub fn revision(&self) -> REVISIONR {
-        REVISIONR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn revision(&self) -> REVISION_R {
+        REVISION_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 4:15 - Part Number of the Processor"]
-    #[inline]
-    pub fn part_no(&self) -> PARTNOR {
-        PARTNOR::_from({
-            const MASK: u16 = 4095;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        })
+    #[inline(always)]
+    pub fn part_no(&self) -> PARTNO_R {
+        PARTNO_R::new(((self.bits >> 4) & 0x0fff) as u16)
     }
     #[doc = "Bits 16:19 - Architecture"]
-    #[inline]
-    pub fn architecture(&self) -> ARCHITECTURER {
-        ARCHITECTURER::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn architecture(&self) -> ARCHITECTURE_R {
+        ARCHITECTURE_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bits 20:23 - Variant Number"]
-    #[inline]
-    pub fn variant(&self) -> VARIANTR {
-        VARIANTR::_from({
-            const MASK: u8 = 15;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn variant(&self) -> VARIANT_R {
+        VARIANT_R::new(((self.bits >> 20) & 0x0f) as u8)
     }
     #[doc = "Bits 24:31 - Implementer Code"]
-    #[inline]
-    pub fn implementer(&self) -> IMPLEMENTERR {
-        IMPLEMENTERR::_from({
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn implementer(&self) -> IMPLEMENTER_R {
+        IMPLEMENTER_R::new(((self.bits >> 24) & 0xff) as u8)
     }
 }

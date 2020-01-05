@@ -1,183 +1,104 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SHCSR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SHCSR"]
+pub type R = crate::R<u32, super::SHCSR>;
+#[doc = "Writer for register SHCSR"]
+pub type W = crate::W<u32, super::SHCSR>;
+#[doc = "Register SHCSR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SHCSR {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `SVCALLPENDED`"]
+#[doc = "SVCall Pending bit\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SVCALLPENDEDR {
-    #[doc = "SVCall is not pending."]
+pub enum SVCALLPENDED_A {
+    #[doc = "0: SVCall is not pending."]
     VALUE1,
-    #[doc = "SVCall is pending."]
+    #[doc = "1: SVCall is pending."]
     VALUE2,
 }
-impl SVCALLPENDEDR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SVCALLPENDEDR::VALUE1 => false,
-            SVCALLPENDEDR::VALUE2 => true,
+impl From<SVCALLPENDED_A> for bool {
+    #[inline(always)]
+    fn from(variant: SVCALLPENDED_A) -> Self {
+        match variant {
+            SVCALLPENDED_A::VALUE1 => false,
+            SVCALLPENDED_A::VALUE2 => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SVCALLPENDEDR {
-        match value {
-            false => SVCALLPENDEDR::VALUE1,
-            true => SVCALLPENDEDR::VALUE2,
+}
+#[doc = "Reader of field `SVCALLPENDED`"]
+pub type SVCALLPENDED_R = crate::R<bool, SVCALLPENDED_A>;
+impl SVCALLPENDED_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SVCALLPENDED_A {
+        match self.bits {
+            false => SVCALLPENDED_A::VALUE1,
+            true => SVCALLPENDED_A::VALUE2,
         }
     }
     #[doc = "Checks if the value of the field is `VALUE1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value1(&self) -> bool {
-        *self == SVCALLPENDEDR::VALUE1
+        *self == SVCALLPENDED_A::VALUE1
     }
     #[doc = "Checks if the value of the field is `VALUE2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_value2(&self) -> bool {
-        *self == SVCALLPENDEDR::VALUE2
+        *self == SVCALLPENDED_A::VALUE2
     }
 }
-#[doc = "Values that can be written to the field `SVCALLPENDED`"]
-pub enum SVCALLPENDEDW {
-    #[doc = "SVCall is not pending."]
-    VALUE1,
-    #[doc = "SVCall is pending."]
-    VALUE2,
-}
-impl SVCALLPENDEDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SVCALLPENDEDW::VALUE1 => false,
-            SVCALLPENDEDW::VALUE2 => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _SVCALLPENDEDW<'a> {
+#[doc = "Write proxy for field `SVCALLPENDED`"]
+pub struct SVCALLPENDED_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SVCALLPENDEDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SVCALLPENDEDW) -> &'a mut W {
+impl<'a> SVCALLPENDED_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SVCALLPENDED_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "SVCall is not pending."]
-    #[inline]
+    #[inline(always)]
     pub fn value1(self) -> &'a mut W {
-        self.variant(SVCALLPENDEDW::VALUE1)
+        self.variant(SVCALLPENDED_A::VALUE1)
     }
     #[doc = "SVCall is pending."]
-    #[inline]
+    #[inline(always)]
     pub fn value2(self) -> &'a mut W {
-        self.variant(SVCALLPENDEDW::VALUE2)
+        self.variant(SVCALLPENDED_A::VALUE2)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 15;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 15 - SVCall Pending bit"]
-    #[inline]
-    pub fn svcallpended(&self) -> SVCALLPENDEDR {
-        SVCALLPENDEDR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn svcallpended(&self) -> SVCALLPENDED_R {
+        SVCALLPENDED_R::new(((self.bits >> 15) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 15 - SVCall Pending bit"]
-    #[inline]
-    pub fn svcallpended(&mut self) -> _SVCALLPENDEDW {
-        _SVCALLPENDEDW { w: self }
+    #[inline(always)]
+    pub fn svcallpended(&mut self) -> SVCALLPENDED_W {
+        SVCALLPENDED_W { w: self }
     }
 }
